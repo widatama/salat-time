@@ -1,0 +1,15 @@
+@import "normalize-css";
+
+/*CSS variable, nesting, and autoprefixer sample*/
+
+:root {
+  --cl-body-text: #999999;
+}
+
+body {
+  display: flex;
+
+  h1 {
+    color: var(--cl-body-text);
+  }
+}
