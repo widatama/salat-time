@@ -18,10 +18,15 @@ module.exports = function (config) {
     frameworks: ["tap"],
     reporters: ["tape"],
     // this is the entry file for all our tests.
-    files: ["../test/unit/components/*.js"],
+    files: [
+      "../node_modules/babel-polyfill/dist/polyfill.js",
+      //"../test/unit/modules/*.js",
+      //"../test/unit/components/*.js",
+      "../test/unit.js"
+    ],
     // we will pass the entry file to webpack for bundling.
     preprocessors: {
-      "../test/**/*.js": ["webpack"]
+      "../test/unit.js": ["webpack"]
     },
     webpack: webpackConf,
     webpackMiddleware: {
