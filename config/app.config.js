@@ -5,7 +5,10 @@ var config = {
   distPath:     "public",
   appPath:      "app",
   templatePath: "app/templates",
-  configPath:   "config"
+  configPath:   "config",
+  external: {
+    geoService: "http://nominatim.openstreetmap.org/"
+  }
 };
 
 module.exports = config;
