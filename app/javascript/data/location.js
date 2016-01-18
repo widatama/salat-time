@@ -5,7 +5,7 @@ import uri from "urijs";
 import gelo from "../modules/gelo";
 import xhr from "../modules/xhr";
 
-let location = {};
+const location = {};
 
 let generateUrl = function generateUrl(position) {
 
@@ -16,9 +16,10 @@ let generateUrl = function generateUrl(position) {
       format:         "json",
       lat:            position.coords.latitude,
       lon:            position.coords.longitude,
-      zoom:           18,
+      zoom:           15,
       addressdetails: 1,
-      namedetails:    1
+      namedetails:    1,
+      extratags:      1
     }).toString();
 
   return completeUrl;
@@ -27,7 +28,7 @@ let generateUrl = function generateUrl(position) {
 let reverseGeocode = function reverseGeocode(position) {
 
   if(position) {
-    let url = generateUrl(position);
+    const url = generateUrl(position);
 
     return xhr.get(url, {
       jsonpCallback: "json_callback"
