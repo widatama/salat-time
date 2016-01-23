@@ -1,10 +1,14 @@
 <template lang="jade">
-  div
-    clock-display
-  div
-    location-display(:address="location.address")
-  div
-    praytime-display(:items="praytime.items")
+  template(v-if="isLoading")
+    div
+      loading-cue-display
+  template(v-else)
+    div
+      clock-display
+    div
+      location-display(:address="location.address")
+    div
+      praytime-display(:items="praytime.items")
 </template>
 
 <script>
@@ -12,12 +16,19 @@
   import locationDisplay from "./locationDisplay.vue";
   import praytimeDisplay from "./praytimeDisplay.vue";
   import clockDisplay from "./clockDisplay.vue";
+  import loadingCueDisplay from "./loadingCueDisplay.vue";
 
   export default {
     components: {
-      "location-display": locationDisplay,
-      "praytime-display": praytimeDisplay,
-      "clock-display":    clockDisplay
+      "location-display":    locationDisplay,
+      "praytime-display":    praytimeDisplay,
+      "clock-display":       clockDisplay,
+      "loading-cue-display": loadingCueDisplay
+    },
+    data() {
+      return {
+        isLoading: true
+      }
     },
     computed: {
       location() {
@@ -29,6 +40,8 @@
     },
     beforeCompile() {
       store.actions.loadState();
+
+      setTimeout( () => {this.$data.isLoading = false}, 5000 );
     }
   }
 </script>
