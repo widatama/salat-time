@@ -1,18 +1,18 @@
 <template lang="jade">
-  div
-    div(v-for="item in items")
-      ul
-        li {{item.fajr}}
-        li {{item.dhuhr}}
-        li {{item.asr}}
-        li {{item.maghrib}}
-        li {{item.isha}}
+  div.praytime-display
+    | {{praytime.name}}&nbsp;
+    time-display(:time="praytime.time")
 </template>
 
 <script>
+  import timeDisplay from "./timeDisplay.vue";
+
   export default {
+    components: {
+      "time-display": timeDisplay
+    },
     props: [
-      "items"
+      "praytime"
     ]
   }
 </script>

@@ -7,8 +7,8 @@ var config = {
   templatePath: "app/templates",
   configPath:   "config",
   external: {
-    geoService:         "http://nominatim.openstreetmap.org/",
-    praytimeService:    "http://www.muslimsalat.com/daily.json",
+    geoService:         "https://nominatim.openstreetmap.org",
+    praytimeService:    "https://www.muslimsalat.com",
     praytimeServiceKey: "c40b0d3e27ac71c22ef5942aa8abfca7"
   }
 };

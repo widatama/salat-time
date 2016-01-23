@@ -1,6 +1,6 @@
 <template lang="jade">
-  div
-    | {{address.state}}
+  div.location-display
+    | {{address.village}}, {{address.state}}
 </template>
 
 <script>
