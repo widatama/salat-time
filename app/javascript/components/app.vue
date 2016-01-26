@@ -6,11 +6,11 @@
     div
       clock-display
     div
-      praytime-display(:prayer="nextPrayer")
+      prayer-display(:prayer="nextPrayer")
     div
       location-display(:address="location.address")
     div
-      praytime-list-display(:prayers="todayPrayers")
+      prayer-list-display(:prayers="todayPrayers")
 </template>
 
 <script>
@@ -18,8 +18,8 @@
 
   import store from "../modules/store";
   import locationDisplay from "./locationDisplay.vue";
-  import praytimeDisplay from "./praytimeDisplay.vue";
-  import praytimeListDisplay from "./praytimeListDisplay.vue";
+  import prayerDisplay from "./prayerDisplay.vue";
+  import prayerListDisplay from "./prayerListDisplay.vue";
   import clockDisplay from "./clockDisplay.vue";
   import loadingCueDisplay from "./loadingCueDisplay.vue";
 
@@ -31,11 +31,11 @@
 
   export default {
     components: {
-      "location-display":      locationDisplay,
-      "praytime-display":      praytimeDisplay,
-      "praytime-list-display": praytimeListDisplay,
-      "clock-display":         clockDisplay,
-      "loading-cue-display":   loadingCueDisplay
+      "location-display":    locationDisplay,
+      "prayer-display":      prayerDisplay,
+      "prayer-list-display": prayerListDisplay,
+      "clock-display":       clockDisplay,
+      "loading-cue-display": loadingCueDisplay
     },
     computed: {
       isLoading() {
