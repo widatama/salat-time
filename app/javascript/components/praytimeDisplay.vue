@@ -1,7 +1,7 @@
 <template lang="jade">
   div.praytime-display
-    | {{praytime.name}}&nbsp;
-    time-display(:time="praytime.time")
+    | {{prayer.name}}&nbsp;
+    time-display(:time="prayer.time")
 </template>
 
 <script>
@@ -12,7 +12,7 @@
       "time-display": timeDisplay
     },
     props: [
-      "praytime"
+      "prayer"
     ]
   }
 </script>

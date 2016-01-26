@@ -1,8 +1,8 @@
 <template lang="jade">
   div.praytime-list-display
     ul
-      li(v-for="praytime in praytimes")
-        praytime-display(:praytime="praytime")
+      li(v-for="prayer in prayers")
+        praytime-display(:prayer="prayer")
 </template>
 
 <script>
@@ -13,7 +13,7 @@
       "praytime-display": praytimeDisplay
     },
     props: [
-      "praytimes"
+      "prayers"
     ]
   }
 </script>
