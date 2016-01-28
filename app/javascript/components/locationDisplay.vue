@@ -1,5 +1,5 @@
 <template lang="jade">
-  div.location-display
+  div.location
     | {{address.village}}, {{address.state}}
 </template>
 

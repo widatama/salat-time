@@ -1,5 +1,5 @@
 <template lang="jade">
-  div
+  div.clock
     | {{hour}} : {{minute}} : {{second}}
 </template>
 

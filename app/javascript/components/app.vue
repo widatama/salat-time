@@ -1,16 +1,11 @@
 <template lang="jade">
   template(v-if="isLoading")
-    div
-      loading-cue-display
+    loading-cue-display
   template(v-else)
-    div
-      clock-display
-    div
-      prayer-display(:prayer="nextPrayer")
-    div
-      location-display(:address="location.address")
-    div
-      prayer-list-display(:prayers="todayPrayers")
+    clock-display
+    prayer-display(:prayer="nextPrayer")
+    location-display(:address="location.address")
+    prayer-list-display(:prayers="todayPrayers")
 </template>
 
 <script>

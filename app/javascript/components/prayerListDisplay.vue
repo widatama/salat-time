@@ -1,7 +1,7 @@
 <template lang="jade">
-  div.praytime-list-display
+  div.prayer-list
     ul
-      li(v-for="prayer in prayers")
+      li.prayer-item(v-for="prayer in prayers")
         prayer-display(:prayer="prayer")
 </template>
 

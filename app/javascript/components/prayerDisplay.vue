@@ -1,7 +1,9 @@
 <template lang="jade">
-  div.praytime-display
-    | {{prayer.name}}&nbsp;
-    time-display(:time="prayer.time")
+  div.prayer
+    div.prayer__name
+      | {{prayer.name}}&nbsp;
+    div.prayer__time
+      time-display(:time="prayer.time")
 </template>
 
 <script>
