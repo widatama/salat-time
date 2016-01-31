@@ -1,8 +1,8 @@
 <template lang="jade">
   div.clock
-    | {{hour}}&nbsp;
-    span.clock__ticker :
-    |  {{minute}}
+    | {{hour}}
+    span.clock__ticker &nbsp;:&nbsp;
+    | {{minute}}
 </template>
 
 <script>

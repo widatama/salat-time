@@ -1,0 +1,80 @@
+
+.prayer-list {
+  @media (--bp-medium) {
+    font-size: 1.25em;
+    line-height: 1.695;
+  }
+
+  @media (--bp-large) {
+    font-size: 3em;
+    line-height: 1.625;
+  }
+}
+
+.prayer-items {
+  overflow: auto;
+
+  margin-bottom: 0;
+
+  list-style-type: none;
+}
+
+.prayer-item {
+  overflow: auto;
+}
+
+.prayer {
+
+  &--next {
+    margin: 3em 0 0.75em;
+
+    @media (--bp-medium) {
+      margin: 0;
+    }
+
+    @media (--bp-large) {
+      margin: 0;
+    }
+  }
+}
+
+.prayer__name {
+  float: left;
+
+  font-weight: 700;
+  text-transform: capitalize;
+
+  &--next {
+    float: none;
+    font-size: 2em;
+    line-height: 1;
+
+    @media (--bp-medium) {
+      font-size: 3em;
+    }
+
+    @media (--bp-large) {
+      font-size: 6em;
+    }
+  }
+}
+
+.prayer__time {
+  float: right;
+
+  &--next {
+    float: none;
+    font-size: 3em;
+    font-weight: 200;
+    line-height: 1;
+
+    @media (--bp-medium) {
+      font-size: 4.5em;
+    }
+
+    @media (--bp-large) {
+      font-size: 7.5em;
+      line-height: 1.5;
+    }
+  }
+}

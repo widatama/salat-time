@@ -1,0 +1,27 @@
+
+.app-header {
+  background-color: var(--cl-bg-header);
+
+  font-size: .75em;
+  line-height: 2;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  padding: 5px 20px;
+
+  color: var(--cl-text-inverse);
+
+  @media (--bp-large) {
+    font-size: 1.5em;
+    line-height: 1.5;
+
+    padding: 1.5%;
+  }
+}
+
+.app__title {
+  float: left;
+}

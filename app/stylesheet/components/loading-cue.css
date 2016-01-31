@@ -1,4 +1,17 @@
 
 .loading-cue {
   animation: pulse 3s infinite;
+  text-align: center;
+
+  @media (--bp-medium) {
+    font-size: 1.5em;
+
+    flex-grow: 1;
+  }
+
+  @media (--bp-large) {
+    font-size: 3em;
+
+    flex-grow: 1;
+  }
 }

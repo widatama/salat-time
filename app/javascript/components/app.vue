@@ -1,11 +1,21 @@
 <template lang="jade">
-  template(v-if="isLoading")
-    loading-cue-display
-  template(v-else)
+  header.app-header
+    .app__title
+      strong Salat
+      | Time
     clock-display
-    prayer-display(:prayer="nextPrayer")
-    location-display(:address="location.address")
-    prayer-list-display(:prayers="todayPrayers")
+  template(v-if="isLoading")
+    .flex-container
+      loading-cue-display
+  template(v-else)
+    .flex-container
+      .flex-group.flex-group--two
+        prayer-display(:prayer="nextPrayer", disp-type="next")
+
+        location-display(:address="location.address")
+
+      .flex-group
+        prayer-list-display(:prayers="todayPrayers")
 </template>
 
 <script>

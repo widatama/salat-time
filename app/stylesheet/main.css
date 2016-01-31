@@ -1,6 +1,14 @@
 @import "normalize-css";
 
-@import "./animation";
+@import "./base/variables";
+@import "./base/animation";
+@import "./base/base";
+@import "./base/typography";
 
+@import "./components/app";
+@import "./components/header";
 @import "./components/loading-cue";
 @import "./components/clock";
+@import "./components/location";
+@import "./components/prayer";
+

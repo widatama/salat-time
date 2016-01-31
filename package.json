@@ -9,7 +9,7 @@
     "template-compile": "node task/jade",
     "template-watch": "node task/jade watch",
     "webpack-build": "webpack --progress --hide-modules --config ./config/webpack.prod.config.js",
-    "webpack-dev": "webpack-dev-server --inline --hot --content-base public/ --config ./config/webpack.dev.config.js",
+    "webpack-dev": "webpack-dev-server --port 3000 --inline --hot --content-base public/ --config ./config/webpack.dev.config.js",
     "test": "karma start config/karma.conf.js"
   },
   "dependencies": {

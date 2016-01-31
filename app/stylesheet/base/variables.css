@@ -1,0 +1,13 @@
+:root {
+  --ft-sans-serif: "Source Sans Pro", Helvetica, Arial, sans-serif;
+
+  --cl-bg-header: #333333;
+  --cl-border: #333333;
+
+  --cl-text: #333333;
+  --cl-text-inverse: #FFFFFF;
+}
+
+@custom-media --bp-large screen and (width >= 1200px);
+@custom-media --bp-medium screen and (width >= 700px) and (width <= 1199px);
+@custom-media --bp-small screen and (width <= 699px);

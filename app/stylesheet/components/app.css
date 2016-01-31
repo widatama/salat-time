@@ -1,0 +1,32 @@
+
+.app {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100%;
+  padding: 0 20px;
+
+  justify-content: center;
+
+  @media (--bp-large) {
+    padding: 7.5% 1.5%;
+  }
+}
+
+.flex-container {
+  @media (--bp-medium) {
+    display: flex;
+  }
+
+  @media (--bp-large) {
+    display: flex;
+  }
+}
+
+.flex-group {
+  flex-grow: 1;
+
+  &--two {
+    flex-grow: 2;
+  }
+}
