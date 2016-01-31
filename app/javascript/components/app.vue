@@ -1,6 +1,7 @@
 <template lang="jade">
   template(v-if="isLoading")
     loading-cue-display
+    clock-display
   template(v-else)
     clock-display
     prayer-display(:prayer="nextPrayer")

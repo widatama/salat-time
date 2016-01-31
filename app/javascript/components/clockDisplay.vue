@@ -1,6 +1,8 @@
 <template lang="jade">
   div.clock
-    | {{hour}} : {{minute}} : {{second}}
+    | {{hour}}&nbsp;
+    span.clock__ticker :
+    |  {{minute}}
 </template>
 
 <script>
@@ -36,10 +38,6 @@
       minute() {
         let rawMinute = this.dateObj.getMinutes();
         return _helper.padZero(rawMinute);
-      },
-      second() {
-        let rawSecond = this.dateObj.getSeconds();
-        return _helper.padZero(rawSecond);
       }
     },
     methods: {

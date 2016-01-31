@@ -1,15 +1,6 @@
 @import "normalize-css";
 
-/*CSS variable, nesting, and autoprefixer sample*/
+@import "./animation";
 
-:root {
-  --cl-body-text: #999999;
-}
-
-body {
-  display: flex;
-
-  h1 {
-    color: var(--cl-body-text);
-  }
-}
+@import "./components/loading-cue";
+@import "./components/clock";

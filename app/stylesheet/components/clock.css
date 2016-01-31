@@ -1,0 +1,4 @@
+
+.clock__ticker {
+  animation: mechanical-pulse 1s infinite;
+}
