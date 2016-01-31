@@ -6,43 +6,30 @@
 </template>
 
 <script>
-  const INTERVAL = 1000;
+  import moment from "moment";
 
-  let _helper = {
-    padZero(value) {
-      if (Math.round(value) === value) {
-        if (value < 10) {
-          return "0" + value;
-        }
-        else {
-          return value + "";
-        }
-      }
-      else {
-        return "";
-      }
-    }
-  };
+  const INTERVAL = 1000;
 
   export default {
     data() {
       return {
-        dateObj: (new Date())
+        dateObj: moment()
       }
     },
     computed: {
       hour() {
-        let rawHour = this.dateObj.getHours();
-        return _helper.padZero(rawHour);
+        return this.dateObj.format("HH");
       },
       minute() {
-        let rawMinute = this.dateObj.getMinutes();
-        return _helper.padZero(rawMinute);
+        return this.dateObj.format("mm");
+      },
+      second() {
+        return this.dateObj.format("ss");
       }
     },
     methods: {
       updateTime() {
-        this.$data.dateObj = new Date();
+        this.$data.dateObj = moment();
       }
     },
     beforeCompile() {
