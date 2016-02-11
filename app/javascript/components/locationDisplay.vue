@@ -1,12 +1,12 @@
 <template lang="jade">
   div.location
-    | {{address.country}}
+    | {{location.city}}, {{location.country.name}}
 </template>
 
 <script>
   export default {
     props: [
-      "address"
+      "location"
     ]
   }
 </script>

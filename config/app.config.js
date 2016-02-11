@@ -7,7 +7,7 @@ var config = {
   templatePath: "app/templates",
   configPath:   "config",
   external: {
-    geoService:         "https://nominatim.openstreetmap.org",
+    geoService:         "http://geoip.nekudo.com",
     praytimeService:    "https://www.muslimsalat.com",
     praytimeServiceKey: "c40b0d3e27ac71c22ef5942aa8abfca7"
   }

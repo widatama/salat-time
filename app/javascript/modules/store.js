@@ -67,13 +67,16 @@ let store = new Vuex.Store({
   state: {
     appPhase: "loading",
     location: {
-      address: {
-        country:  "",
-        state:    "",
-        city:     "",
-        county:   "",
-        postcode: ""
-      }
+      country: {
+        name: "",
+        code: ""
+      },
+      location: {
+        latitude: 0,
+        longitude: 0,
+        time_zone: ""
+      },
+      city: ""
     },
     todayPrayers: [
       {
@@ -93,7 +96,7 @@ let store = new Vuex.Store({
       Vue.set(state, "appPhase", newAppPhase);
     },
     [UPDATE_LOCATION] (state, newLocation) {
-      Vue.set(state.location, "address", newLocation.address);
+      Vue.set(state, "location", newLocation);
     },
     [UPDATE_TODAYPRAYER] (state, newPrayers) {
       Vue.set(state, "todayPrayers", newPrayers);
@@ -107,11 +110,11 @@ let store = new Vuex.Store({
       return location.get()
         .then((response) => {
           store.dispatch(UPDATE_LOCATION, response);
-          let country = response.address.country;
-          return country;
+
+          return response.city;
         })
-        .then((country) => {
-          return praytime.get(country);
+        .then((city) => {
+          return praytime.get(city);
         })
         .then((response) => {
           let todayPrayers = transformPrayerList(response.items[0]);

@@ -12,7 +12,7 @@
       .flex-group.flex-group--two
         prayer-display(:prayer="nextPrayer", disp-type="next")
 
-        location-display(:address="location.address")
+        location-display(:location="location")
 
       .flex-group
         prayer-list-display(:prayers="todayPrayers")
