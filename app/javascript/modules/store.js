@@ -4,7 +4,7 @@ import Vue from "vue";
 import moment from "moment";
 
 import location from "../data/location";
-import praytime from "../data/praytime";
+import prayer from "../data/prayer";
 
 const
   UPDATE_LOCATION =    "UPDATE_LOCATION",
@@ -12,13 +12,13 @@ const
   UPDATE_TODAYPRAYER = "UPDATE_TODAYPRAYER",
   UPDATE_NEXTPRAYER =  "UPDATE_NEXTPRAYER";
 
-function generatePrayerArray(prayerList, dateStr) {
+function generatePrayerArray(prayerList, date) {
   let result = Object.keys(prayerList).map((key) => {
-    let time = moment(prayerList[key], "h:m a").format("HH : mm");
+    let time = moment(prayerList[key], "HH:mm").format("HH : mm");
 
     return {
       name: key,
-      date: dateStr,
+      date: date,
       time: time
     };
   });
@@ -27,32 +27,28 @@ function generatePrayerArray(prayerList, dateStr) {
 }
 
 function isNextPrayer(prayer) {
-  let praytime = moment(prayer.date + " " + prayer.time, "YYYY-M-D h:m a");
+  let praytime = moment(prayer.date + " " + prayer.time, "DD MMM YYYY HH : mm");
 
   if (moment().isSameOrBefore(praytime)) {
     return true;
   }
 }
 
-function transformPrayerList(prayerList) {
-  let
-    date =        prayerList.date_for,
-    prayerArray = [];
+function transformPrayerList(prayerList, date) {
+  let prayerArray = [];
 
-  delete prayerList.date_for;
-  delete prayerList.shurooq;
+  delete prayerList.Sunrise;
+  delete prayerList.Sunset;
 
   prayerArray = generatePrayerArray(prayerList, date);
-
-  prayerList.date_for = date;
 
   return prayerArray;
 }
 
 function getNextPrayer(prayerListToday, prayerListTomorrow) {
   let
-    prayerArrayToday =    transformPrayerList(prayerListToday),
-    prayerArrayTomorrow = transformPrayerList(prayerListTomorrow),
+    prayerArrayToday =    transformPrayerList(prayerListToday.timings, prayerListToday.date.readable),
+    prayerArrayTomorrow = transformPrayerList(prayerListTomorrow.timings, prayerListTomorrow.date.readable),
     nextPrayer =          {};
 
   nextPrayer = prayerArrayToday.concat(prayerArrayTomorrow).find(isNextPrayer);
@@ -111,14 +107,15 @@ let store = new Vuex.Store({
         .then((response) => {
           store.dispatch(UPDATE_LOCATION, response);
 
-          return response.city;
+          return response.location;
         })
-        .then((city) => {
-          return praytime.get(city);
+        .then((location) => {
+          return prayer.get(location);
         })
         .then((response) => {
-          let todayPrayers = transformPrayerList(response.items[0]);
-          let nextPrayer = getNextPrayer(response.items[0], response.items[1]);
+          let
+            todayPrayers = transformPrayerList(response[0].timings, response[0].date.timestamp),
+            nextPrayer = getNextPrayer(response[0], response[1]);
 
           store.dispatch(UPDATE_TODAYPRAYER, todayPrayers);
           store.dispatch(UPDATE_NEXTPRAYER, nextPrayer);

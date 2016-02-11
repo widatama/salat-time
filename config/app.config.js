@@ -8,8 +8,7 @@ var config = {
   configPath:   "config",
   external: {
     geoService:         "http://geoip.nekudo.com",
-    praytimeService:    "https://www.muslimsalat.com",
-    praytimeServiceKey: "c40b0d3e27ac71c22ef5942aa8abfca7"
+    praytimeService:    "http://api.aladhan.com"
   }
 };
 

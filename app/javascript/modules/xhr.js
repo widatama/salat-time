@@ -13,11 +13,21 @@ function checkStatus(response) {
   }
 }
 
-Xhr.get = function(url, options) {
+Xhr.getJsonp = function(url, options) {
 
   return FetchJsonp(url, options)
     .then(checkStatus)
     .then(response => {return response.json();})
+    .catch(error => console.log("Request failed", error));
+
+};
+
+Xhr.get = function(url, options) {
+
+  return fetch(url, options)
+    .then(checkStatus)
+    .then(response => {return response.json();})
+    .then(responseJson => {return responseJson.data;})
     .catch(error => console.log("Request failed", error));
 
 };
