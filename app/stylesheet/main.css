@@ -8,7 +8,7 @@
 @import "./components/app";
 @import "./components/header";
 @import "./components/loading-cue";
-@import "./components/clock";
+@import "./components/time";
 @import "./components/location";
 @import "./components/prayer";
 

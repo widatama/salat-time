@@ -1,0 +1,12 @@
+
+.current-time {
+  float: right;
+}
+
+.current-date {
+  margin-right: .5em;
+}
+
+.clock__ticker {
+  animation: blink 1s infinite;
+}

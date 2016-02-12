@@ -3,7 +3,7 @@
     .app__title
       strong Salat
       | Time
-    clock-display
+    current-time-display
   template(v-if="isLoading")
     .flex-container
       loading-cue-display
@@ -25,7 +25,7 @@
   import locationDisplay from "./locationDisplay.vue";
   import prayerDisplay from "./prayerDisplay.vue";
   import prayerListDisplay from "./prayerListDisplay.vue";
-  import clockDisplay from "./clockDisplay.vue";
+  import currentTimeDisplay from "./currentTimeDisplay.vue";
   import loadingCueDisplay from "./loadingCueDisplay.vue";
 
   const APPCYCLEINTERVAL = 600000; // Ten minutes
@@ -39,7 +39,7 @@
       "location-display":    locationDisplay,
       "prayer-display":      prayerDisplay,
       "prayer-list-display": prayerListDisplay,
-      "clock-display":       clockDisplay,
+      "current-time-display":       currentTimeDisplay,
       "loading-cue-display": loadingCueDisplay
     },
     computed: {

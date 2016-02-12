@@ -1,8 +1,11 @@
 <template lang="jade">
-  div.clock
-    | {{hour}}
-    span.clock__ticker &nbsp;:&nbsp;
-    | {{minute}}
+  .current-time
+    span.current-date
+      | {{day}} {{month}}
+    span.clock
+      | {{hour}}
+      span.clock__ticker &nbsp;:&nbsp;
+      | {{minute}}
 </template>
 
 <script>
@@ -17,14 +20,17 @@
       }
     },
     computed: {
+      day() {
+        return this.dateObj.format("DD");
+      },
+      month() {
+        return this.dateObj.format("MMM");
+      },
       hour() {
         return this.dateObj.format("HH");
       },
       minute() {
         return this.dateObj.format("mm");
-      },
-      second() {
-        return this.dateObj.format("ss");
       }
     },
     methods: {
