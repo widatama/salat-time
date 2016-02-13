@@ -1,61 +1,14 @@
 import Vuex from "vuex";
 import Vue from "vue";
 
-import moment from "moment";
-
 import location from "../data/location";
-import prayer from "../data/prayer";
+import salat from "../data/salat";
 
 const
-  UPDATE_LOCATION =    "UPDATE_LOCATION",
-  UPDATE_APPPHASE =    "UPDATE_APPPHASE",
-  UPDATE_TODAYPRAYER = "UPDATE_TODAYPRAYER",
-  UPDATE_NEXTPRAYER =  "UPDATE_NEXTPRAYER";
-
-function generatePrayerArray(prayerList, date) {
-  let result = Object.keys(prayerList).map((key) => {
-    let time = moment(prayerList[key], "HH:mm").format("HH : mm");
-
-    return {
-      name: key,
-      date: date,
-      time: time
-    };
-  });
-
-  return result;
-}
-
-function isNextPrayer(prayer) {
-  let praytime = moment(prayer.date + " " + prayer.time, "DD MMM YYYY HH : mm");
-
-  if (moment().isSameOrBefore(praytime)) {
-    return true;
-  }
-}
-
-function transformPrayerList(prayerList, date) {
-  let prayerArray = [];
-
-  delete prayerList.Sunrise;
-  delete prayerList.Sunset;
-
-  prayerArray = generatePrayerArray(prayerList, date);
-
-  return prayerArray;
-}
-
-function getNextPrayer(prayerListToday, prayerListTomorrow) {
-  let
-    prayerArrayToday =    transformPrayerList(prayerListToday.timings, prayerListToday.date.readable),
-    prayerArrayTomorrow = transformPrayerList(prayerListTomorrow.timings, prayerListTomorrow.date.readable),
-    nextPrayer =          {};
-
-  nextPrayer = prayerArrayToday.concat(prayerArrayTomorrow).find(isNextPrayer);
-
-  return nextPrayer;
-}
-
+  UPDATE_LOCATION =   "UPDATE_LOCATION",
+  UPDATE_APPPHASE =   "UPDATE_APPPHASE",
+  UPDATE_TODAYSALAT = "UPDATE_TODAYSALAT",
+  UPDATE_NEXTSALAT =  "UPDATE_NEXTSALAT";
 
 Vue.use(Vuex);
 
@@ -74,14 +27,14 @@ let store = new Vuex.Store({
       },
       city: ""
     },
-    todayPrayers: [
+    todaySalat: [
       {
         name: "",
         date: "",
         time: ""
       }
     ],
-    nextPrayer: {
+    nextSalat: {
       name: "",
       date: "",
       time: ""
@@ -94,31 +47,28 @@ let store = new Vuex.Store({
     [UPDATE_LOCATION] (state, newLocation) {
       Vue.set(state, "location", newLocation);
     },
-    [UPDATE_TODAYPRAYER] (state, newPrayers) {
-      Vue.set(state, "todayPrayers", newPrayers);
+    [UPDATE_TODAYSALAT] (state, newTodaySalat) {
+      Vue.set(state, "todaySalat", newTodaySalat);
     },
-    [UPDATE_NEXTPRAYER] (state, newPrayer) {
-      Vue.set(state, "nextPrayer", newPrayer);
+    [UPDATE_NEXTSALAT] (state, newSalat) {
+      Vue.set(state, "nextSalat", newSalat);
     }
   },
   actions: {
     loadState(store) {
-      return location.get()
+      location.get()
         .then((response) => {
           store.dispatch(UPDATE_LOCATION, response);
 
           return response.location;
         })
         .then((location) => {
-          return prayer.get(location);
+          return salat.get(location);
         })
-        .then((response) => {
-          let
-            todayPrayers = transformPrayerList(response[0].timings, response[0].date.timestamp),
-            nextPrayer = getNextPrayer(response[0], response[1]);
+        .then((salat) => {
 
-          store.dispatch(UPDATE_TODAYPRAYER, todayPrayers);
-          store.dispatch(UPDATE_NEXTPRAYER, nextPrayer);
+          store.dispatch(UPDATE_TODAYSALAT, salat.todaySalat);
+          store.dispatch(UPDATE_NEXTSALAT, salat.nextSalat);
 
           store.dispatch(UPDATE_APPPHASE, "standby");
         });

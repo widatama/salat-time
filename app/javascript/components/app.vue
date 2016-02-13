@@ -10,21 +10,20 @@
   template(v-else)
     .flex-container
       .flex-group.flex-group--two
-        prayer-display(:prayer="nextPrayer", disp-type="next")
+        salat-display(:salat="nextSalat", disp-type="next")
 
         location-display(:location="location")
 
       .flex-group
-        prayer-list-display(:prayers="todayPrayers")
+        salat-list-display(:salat-list="todaySalat")
 </template>
 
 <script>
-  import moment from "moment";
 
   import store from "../modules/store";
   import locationDisplay from "./locationDisplay.vue";
-  import prayerDisplay from "./prayerDisplay.vue";
-  import prayerListDisplay from "./prayerListDisplay.vue";
+  import salatDisplay from "./salatDisplay.vue";
+  import salatListDisplay from "./salatListDisplay.vue";
   import currentTimeDisplay from "./currentTimeDisplay.vue";
   import loadingCueDisplay from "./loadingCueDisplay.vue";
 
@@ -36,11 +35,11 @@
 
   export default {
     components: {
-      "location-display":    locationDisplay,
-      "prayer-display":      prayerDisplay,
-      "prayer-list-display": prayerListDisplay,
-      "current-time-display":       currentTimeDisplay,
-      "loading-cue-display": loadingCueDisplay
+      "location-display":     locationDisplay,
+      "salat-display":        salatDisplay,
+      "salat-list-display":   salatListDisplay,
+      "current-time-display": currentTimeDisplay,
+      "loading-cue-display":  loadingCueDisplay
     },
     computed: {
       isLoading() {
@@ -52,11 +51,11 @@
       location() {
         return store.state.location;
       },
-      todayPrayers() {
-        return store.state.todayPrayers;
+      todaySalat() {
+        return store.state.todaySalat;
       },
-      nextPrayer() {
-        return store.state.nextPrayer;
+      nextSalat() {
+        return store.state.nextSalat;
       }
     },
     beforeCompile() {

@@ -1,5 +1,5 @@
 
-.prayer-list {
+.salat-list {
   @media (--bp-medium) {
     font-size: 1.25em;
     line-height: 1.695;
@@ -11,7 +11,7 @@
   }
 }
 
-.prayer-items {
+.salat-items {
   overflow: auto;
 
   margin-bottom: 0;
@@ -19,11 +19,11 @@
   list-style-type: none;
 }
 
-.prayer-item {
+.salat-item {
   overflow: auto;
 }
 
-.prayer {
+.salat {
 
   &--next {
     margin: 3em 0 0.75em;
@@ -38,7 +38,7 @@
   }
 }
 
-.prayer__name {
+.salat__name {
   float: left;
 
   font-weight: 700;
@@ -59,7 +59,7 @@
   }
 }
 
-.prayer__time {
+.salat__time {
   float: right;
 
   &--next {
