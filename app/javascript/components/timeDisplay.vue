@@ -1,6 +1,6 @@
 <template lang="jade">
-  div.time-display
-    | {{time}}
+.time-display
+  | {{time}}
 </template>
 
 <script>

@@ -1,21 +1,21 @@
 <template lang="jade">
-  header.app-header
-    .app__title
-      strong Salat
-      | Time
-    current-time-display
-  template(v-if="isLoading")
-    .flex-container
-      loading-cue-display(:loading-text="appPhase")
-  template(v-else)
-    .flex-container
-      .flex-group.flex-group--two
-        salat-display(:salat="nextSalat", disp-type="next")
+header.app-header
+  .app__title
+    strong Salat
+    | Time
+  current-time-display
+template(v-if="isLoading")
+  .flex-container
+    loading-cue-display(:loading-text="appPhase")
+template(v-else)
+  .flex-container
+    .flex-group.flex-group--two
+      salat-display(:salat="nextSalat", disp-type="next")
 
-        location-display(:location="location")
+      location-display(:location="location")
 
-      .flex-group
-        salat-list-display(:salat-list="todaySalat")
+    .flex-group
+      salat-list-display(:salat-list="todaySalat")
 </template>
 
 <script>

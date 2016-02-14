@@ -1,5 +1,5 @@
 <template lang="jade">
-  div.loading-cue {{loadingText}}
+.loading-cue {{loadingText}}
 </template>
 
 <script>

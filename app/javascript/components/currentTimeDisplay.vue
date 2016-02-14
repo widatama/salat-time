@@ -1,11 +1,11 @@
 <template lang="jade">
-  .current-time
-    span.current-date
-      | {{day}} {{month}}
-    span.clock
-      | {{hour}}
-      span.clock__ticker &nbsp;:&nbsp;
-      | {{minute}}
+.current-time
+  span.current-date
+    | {{day}} {{month}}
+  span.clock
+    | {{hour}}
+    span.clock__ticker &nbsp;:&nbsp;
+    | {{minute}}
 </template>
 
 <script>

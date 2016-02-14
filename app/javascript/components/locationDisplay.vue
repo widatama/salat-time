@@ -1,6 +1,6 @@
 <template lang="jade">
-  div.location
-    | {{location.city}}, {{location.country.name}}
+.location
+  | {{location.city}}, {{location.country.name}}
 </template>
 
 <script>

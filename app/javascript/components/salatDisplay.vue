@@ -1,9 +1,9 @@
 <template lang="jade">
-  div.salat(class="{{dispType ? 'salat--' + dispType : ''}}")
-    div.salat__name(class="{{dispType ? 'salat__name--' + dispType : ''}}")
-      | {{salat.name}}
-    div.salat__time(class="{{dispType ? 'salat__time--' + dispType : ''}}")
-      time-display(:time="salat.time")
+.salat(class="{{dispType ? 'salat--' + dispType : ''}}")
+  .salat__name(class="{{dispType ? 'salat__name--' + dispType : ''}}")
+    | {{salat.name}}
+  .salat__time(class="{{dispType ? 'salat__time--' + dispType : ''}}")
+    time-display(:time="salat.time")
 </template>
 
 <script>
