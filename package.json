@@ -1,7 +1,7 @@
 {
-  "name": "vue-app",
+  "name": "salat-time",
   "version": "0.0.1",
-  "description": "A Vue app",
+  "description": "Location based daily salat schedule",
   "scripts": {
     "start": "npm run clean && npm run template-watch & npm run webpack-dev",
     "build": "npm run clean && npm run template-compile && npm run webpack-build",
@@ -18,7 +18,8 @@
     "normalize-css": "^2.3.1",
     "url-factory": "^1.0.4",
     "vue": "1.0",
-    "vuex": "^0.2.0"
+    "vuex": "^0.2.0",
+    "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.3",
@@ -30,10 +31,12 @@
     "babel-preset-stage-0": "^6.1.2",
     "babel-runtime": "^5.8.0",
     "css-loader": "^0.23.1",
+    "exports-loader": "^0.6.3",
     "extract-text-webpack-plugin": "^1.0.0",
     "file-loader": "^0.8.5",
     "fsmonitor": "^0.2.4",
     "html-webpack-plugin": "^1.7.0",
+    "imports-loader": "^0.6.5",
     "jade": "1.11.0",
     "karma": "^0.13.16",
     "karma-phantomjs-launcher": "^0.2.2",

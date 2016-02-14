@@ -1,3 +1,4 @@
+var webpack =           require("webpack");
 var postcssImport =     require("postcss-import");
 var postcssNext =       require("postcss-cssnext");
 var postcssNested =     require("postcss-nested");
@@ -43,6 +44,9 @@ module.exports = {
     })
   ],
   plugins: [
-    new ExtractTextPlugin("./stylesheet/app.css")
+    new ExtractTextPlugin("./stylesheet/app.css"),
+    new webpack.ProvidePlugin({
+      "fetch":   "imports?this=>global!exports?global.fetch!whatwg-fetch"
+    })
   ]
 };
