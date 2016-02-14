@@ -1,13 +1,28 @@
 
 .salat-list {
+  border-top: solid .05em var(--cl-border);
+  padding-top: .7em;
+
   @media (--bp-medium) {
     font-size: 1.25em;
     line-height: 1.695;
+
+    padding-left: .75em;
+    padding-top: 0;
+
+    border-top: none;
+    border-left: solid 1px var(--cl-border);
   }
 
   @media (--bp-large) {
     font-size: 3em;
-    line-height: 1.625;
+    line-height: 1.55;
+
+    padding-left: .75em;
+    padding-top: 0;
+
+    border-top: none;
+    border-left: solid 1px var(--cl-border);
   }
 }
 
@@ -26,7 +41,7 @@
 .salat {
 
   &--next {
-    margin: 3em 0 0.75em;
+    margin: 3em 0 .75em;
 
     @media (--bp-medium) {
       margin: 0;
@@ -48,13 +63,16 @@
     float: none;
     font-size: 2em;
     line-height: 1;
+    margin-bottom: .175em;
 
     @media (--bp-medium) {
       font-size: 3em;
+      margin-bottom: 0;
     }
 
     @media (--bp-large) {
       font-size: 6em;
+      margin-bottom: 0;
     }
   }
 }

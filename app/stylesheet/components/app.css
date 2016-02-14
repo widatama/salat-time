@@ -28,5 +28,13 @@
 
   &--two {
     flex-grow: 2;
+
+    @media (--bp-medium) {
+      max-width: 56%;
+    }
+
+    @media (--bp-large) {
+      max-width: 56%;
+    }
   }
 }
