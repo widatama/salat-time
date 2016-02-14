@@ -14,7 +14,7 @@ Vue.use(Vuex);
 
 let store = new Vuex.Store({
   state: {
-    appPhase: "loading",
+    appPhase: "locating",
     location: {
       country: {
         name: "",
@@ -58,11 +58,15 @@ let store = new Vuex.Store({
     loadState(store) {
       location.get()
         .then((response) => {
+          store.dispatch(UPDATE_APPPHASE, "locating");
+
           store.dispatch(UPDATE_LOCATION, response);
 
           return response.location;
         })
         .then((location) => {
+          store.dispatch(UPDATE_APPPHASE, "loading salat");
+
           return salat.get(location);
         })
         .then((salat) => {

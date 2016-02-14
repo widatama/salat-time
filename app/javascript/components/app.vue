@@ -6,7 +6,7 @@
     current-time-display
   template(v-if="isLoading")
     .flex-container
-      loading-cue-display
+      loading-cue-display(:loading-text="appPhase")
   template(v-else)
     .flex-container
       .flex-group.flex-group--two
@@ -43,10 +43,11 @@
     },
     computed: {
       isLoading() {
-        return store.state.appPhase === "loading";
+        let appPhase = store.state.appPhase;
+        return appPhase === "loading salat" || appPhase === "locating";
       },
-      isStandby() {
-        return store.state.appPhase === "standby";
+      appPhase() {
+        return store.state.appPhase;
       },
       location() {
         return store.state.location;
