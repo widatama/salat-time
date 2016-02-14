@@ -2,7 +2,7 @@ import moment from "moment";
 
 const manipulator = {};
 
-manipulator.generateSalatArray = function generateSalatArray(salatList, date) {
+function generateSalatArray(salatList, date) {
   let result = Object.keys(salatList).map((key) => {
     let time = moment(salatList[key], "HH:mm").format("HH : mm");
 
@@ -14,15 +14,15 @@ manipulator.generateSalatArray = function generateSalatArray(salatList, date) {
   });
 
   return result;
-};
+}
 
-manipulator.transformSalatList = function transformSalatList(salatList, date) {
+manipulator.transformSalatList = function transformSalatList(salatList) {
   let salatArray = [];
 
-  delete salatList.Sunrise;
-  delete salatList.Sunset;
+  delete salatList.timings.Sunrise;
+  delete salatList.timings.Sunset;
 
-  salatArray = manipulator.generateSalatArray(salatList, date);
+  salatArray = generateSalatArray(salatList.timings, salatList.date.readable);
 
   return salatArray;
 };
@@ -37,8 +37,8 @@ manipulator.isNextSalat = function isNextSalat(salat) {
 
 manipulator.getNextSalat = function getNextSalat(salatListToday, salatListTomorrow) {
   let
-    salatArrayToday =    manipulator.transformSalatList(salatListToday.timings, salatListToday.date.readable),
-    salatArrayTomorrow = manipulator.transformSalatList(salatListTomorrow.timings, salatListTomorrow.date.readable),
+    salatArrayToday =    manipulator.transformSalatList(salatListToday),
+    salatArrayTomorrow = manipulator.transformSalatList(salatListTomorrow),
     nextSalat =          {};
 
   nextSalat = salatArrayToday.concat(salatArrayTomorrow).find(manipulator.isNextSalat);

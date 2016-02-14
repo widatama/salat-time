@@ -8,6 +8,7 @@ tape("App component", function(assert) {
     components: {app: App}
   }).$mount();
 
-  assert.pass("Just pass, nothing to test for now");
+  assert.ok(vm.$el.querySelector(".app-header"), "Application header generated");
+
   assert.end();
 });

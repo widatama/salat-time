@@ -32,7 +32,7 @@ salat.get = function(location) {
 
   return Promise.all([xhr.get(urlToday), xhr.get(urlTomorrow)]).then((salat) => {
     let
-      todaySalat = manipulator.transformSalatList(salat[0].timings, salat[0].date.readable),
+      todaySalat = manipulator.transformSalatList(salat[0]),
       nextSalat = manipulator.getNextSalat(salat[0], salat[1]);
 
     return {
