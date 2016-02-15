@@ -70,12 +70,18 @@ let store = new Vuex.Store({
           return salat.get(location);
         })
         .then((salat) => {
-
           store.dispatch(UPDATE_TODAYSALAT, salat.todaySalat);
           store.dispatch(UPDATE_NEXTSALAT, salat.nextSalat);
 
           store.dispatch(UPDATE_APPPHASE, "standby");
         });
+    },
+    loadSalat(store) {
+      salat.get(store.state.location.location)
+      .then((salat) => {
+        store.dispatch(UPDATE_TODAYSALAT, salat.todaySalat);
+        store.dispatch(UPDATE_NEXTSALAT, salat.nextSalat);
+      });
     }
   }
 });

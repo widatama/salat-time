@@ -30,7 +30,7 @@ template(v-else)
   const APPCYCLEINTERVAL = 600000; // Ten minutes
 
   function appCycle() {
-    store.actions.loadState();
+    store.actions.loadSalat();
   }
 
   export default {
@@ -60,7 +60,7 @@ template(v-else)
       }
     },
     beforeCompile() {
-      appCycle();
+      store.actions.loadState();
       setInterval(appCycle, APPCYCLEINTERVAL);
     }
   }
