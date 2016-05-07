@@ -16,7 +16,7 @@ Xhr.get = function(url, options) {
   return fetch(url, options)
     .then(checkStatus)
     .then(response => {return response.json();})
-    .catch(error => console.log("Request failed", error));
+    .catch(error => {throw error;});
 
 };
 

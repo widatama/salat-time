@@ -7,6 +7,7 @@ import salat from "../data/salat";
 const
   UPDATE_LOCATION =   "UPDATE_LOCATION",
   UPDATE_APPPHASE =   "UPDATE_APPPHASE",
+  UPDATE_APPERROR =   "UPDATE_APPERROR",
   UPDATE_TODAYSALAT = "UPDATE_TODAYSALAT",
   UPDATE_NEXTSALAT =  "UPDATE_NEXTSALAT";
 
@@ -15,6 +16,7 @@ Vue.use(Vuex);
 let store = new Vuex.Store({
   state: {
     appPhase: "locating",
+    appError: {},
     location: {
       country: {
         name: "",
@@ -43,6 +45,9 @@ let store = new Vuex.Store({
   mutations: {
     [UPDATE_APPPHASE] (state, newAppPhase) {
       Vue.set(state, "appPhase", newAppPhase);
+    },
+    [UPDATE_APPERROR] (state, newAppError) {
+      Vue.set(state, "appError", newAppError);
     },
     [UPDATE_LOCATION] (state, newLocation) {
       Vue.set(state, "location", newLocation);
@@ -74,6 +79,16 @@ let store = new Vuex.Store({
           store.dispatch(UPDATE_NEXTSALAT, salat.nextSalat);
 
           store.dispatch(UPDATE_APPPHASE, "standby");
+        })
+        .catch((error) => {
+          if (error.message === "Failed to fetch") {
+            let error = new Error("Network error, please check your connection and disable adblock");
+
+            store.dispatch(UPDATE_APPPHASE, "network error");
+            store.dispatch(UPDATE_APPERROR, error);
+          }
+
+          console.log(error);
         });
     },
     loadSalat(store) {
