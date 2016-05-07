@@ -22,7 +22,7 @@ let generateUrl = function generateUrl() {
 
 location.get = function() {
   const url = generateUrl();
-  return xhr.getJsonp(url);
+  return xhr.get(url);
 };
 
 export default location;

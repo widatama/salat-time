@@ -13,7 +13,6 @@
     "test": "karma start config/karma.conf.js"
   },
   "dependencies": {
-    "fetch-jsonp": "^1.0.0",
     "moment": "^2.11.1",
     "normalize-css": "^2.3.1",
     "url-factory": "^1.0.4",

@@ -62,12 +62,12 @@ let store = new Vuex.Store({
 
           store.dispatch(UPDATE_LOCATION, response);
 
-          return response.location;
+          return response;
         })
-        .then((location) => {
+        .then((response) => {
           store.dispatch(UPDATE_APPPHASE, "loading salat");
 
-          return salat.get(location);
+          return salat.get(response.location);
         })
         .then((salat) => {
           store.dispatch(UPDATE_TODAYSALAT, salat.todaySalat);
