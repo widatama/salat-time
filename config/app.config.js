@@ -7,8 +7,8 @@ var config = {
   templatePath: "app/templates",
   configPath:   "config",
   external: {
-    geoService:       "http://geoip.nekudo.com",
-    salatTimeService: "http://api.aladhan.com"
+    geoService:       "https://freegeoip.net/json/",
+    salatTimeService: "https://api.aladhan.com"
   }
 };
 

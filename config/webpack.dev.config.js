@@ -1,15 +1,19 @@
-var baseConfig = require("./webpack.base.config");
+var config = require("./webpack.config");
 
-baseConfig.output = {
-  path:       "./asset",
-  publicPath: "/asset",
-  filename:   "./javascript/app.js"
+config.entry.dev = "./app/javascripts/dev.js";
+
+config.output = {
+  path:       "./",
+  publicPath: "/",
+  filename:   "assets/javascripts/[name].js"
 };
 
-baseConfig.devtool = "eval-source-map";
+config.devtool = "eval-source-map";
 
-baseConfig.devServer = {
-  noInfo: true
+config.devServer = {
+  noInfo:      false,
+  hot:         true,
+  contentBase: "public/"
 };
 
-module.exports = baseConfig;
+module.exports = config;

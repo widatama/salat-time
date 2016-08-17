@@ -1,9 +1,9 @@
 import tape from "tape";
 import moment from "moment";
-import salatManipulator from "../../../app/javascript/data/salatManipulator";
+import salatManipulator from "../../../app/javascripts/data/salatmanipulator";
 
 
-tape("Salat data manipulator", function(assert) {
+tape("Salat data manipulator", (assert) => {
 
   let
     salatListToday = {

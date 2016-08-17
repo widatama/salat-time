@@ -1,6 +1,7 @@
-// we can just use the exact same webpack config by requiring it
+// Use the exact same webpack config by requiring it
 // but make sure to delete the normal entry
-var webpackConf = require("./webpack.base.config");
+var webpackConf = require("./webpack.config");
+
 delete webpackConf.entry;
 webpackConf.node = {
   fs: "empty"
@@ -9,24 +10,27 @@ webpackConf.node = {
 module.exports = function (config) {
   config.set({
     plugins: [
-      require("karma-phantomjs-launcher"),
+      require("karma-chrome-launcher"),
       require("karma-tap"),
-      require("karma-tape-reporter"),
+      require("karma-tap-pretty-reporter"),
       require("karma-webpack")
     ],
-    browsers: ["PhantomJS"],
+    // PhantomJS has too many missing functions :(
+    browsers: ["ChromeCanary"],
     frameworks: ["tap"],
-    reporters: ["tape"],
-    // this is the entry file for all our tests.
-    files: [
-      "../node_modules/babel-polyfill/dist/polyfill.js",
-      //"../test/unit/modules/*.js",
-      //"../test/unit/components/*.js",
-      "../test/unit.js"
+    reporters:  ["tap-pretty"],
+    tapReporter: {
+      prettifier: "faucet",
+      separator: "====="
+    },
+    files: [  // entry file for all tests.
+      "../test/bundle.js"
     ],
-    // we will pass the entry file to webpack for bundling.
-    preprocessors: {
-      "../test/unit.js": ["webpack"]
+    preprocessors: { // pass the entry file to webpack for bundling.
+      "../test/bundle.js": ["webpack"]
+    },
+    client: {
+      captureConsole: false
     },
     webpack: webpackConf,
     webpackMiddleware: {

@@ -1,17 +1,18 @@
 var webpack = require("webpack");
-var baseConfig = require("./webpack.base.config");
 
-baseConfig.output = {
-  path:       "./public/asset",
-  publicPath: "/public/asset",
-  filename:   "./javascript/app.js"
+var OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
+
+var config = require("./webpack.config");
+
+config.output = {
+  path:       "./public/",
+  publicPath: "",
+  filename:   "assets/javascripts/[name].js"
 };
 
-baseConfig.plugins = (baseConfig.plugins || []).concat([
-  new webpack.DefinePlugin({
-    "process.env": {
-      NODE_ENV: "'production'"
-    }
+config.plugins = (config.plugins || []).concat([
+  new OptimizeCSSPlugin({
+    cssProcessorOptions: {discardComments: {removeAll: true}}
   }),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
@@ -21,4 +22,4 @@ baseConfig.plugins = (baseConfig.plugins || []).concat([
   new webpack.optimize.OccurenceOrderPlugin()
 ]);
 
-module.exports = baseConfig;
+module.exports = config;

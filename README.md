@@ -17,5 +17,5 @@ Location based daily salat schedule
 
 ## Credit
 
-1. Geoip from [http://geoip.nekudo.com](http://geoip.nekudo.com)
+1. Geoip from [http://freegeoip.net](http://freegeoip.net)
 2. Salat time from [http://api.aladhan.com](http://api.aladhan.com)
