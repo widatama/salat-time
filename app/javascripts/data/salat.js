@@ -1,7 +1,7 @@
 import config from "../../../config/app.config";
 
 import moment from "moment";
-import urlFactory from "url-factory";
+import minUrl from "min-url";
 
 import xhr from "../modules/xhr";
 
@@ -10,20 +10,16 @@ import manipulator from "./salatmanipulator";
 const salat = {};
 
 let generateUrl = function generateUrl(location, timestamp) {
-  let
-    urlBuilder =  new urlFactory.Builder(),
-    baseUrl =     config.external.salatTimeService,
-    completeUrl = "";
 
-  completeUrl = urlBuilder.setBaseURL(baseUrl)
-    .appendPath(["timings", timestamp].join("/"))
-    .setQueryParameter("latitude", location.latitude.toString())
-    .setQueryParameter("longitude", location.longitude.toString())
-    .setQueryParameter("timezonestring", location.timezone)
-    .setQueryParameter("method", "3")
-    .build();
+  let urlObj = minUrl.parse(config.external.salatTimeService, true);
 
-  return completeUrl;
+  urlObj.pathname = [urlObj.pathname, timestamp].join("/");
+  urlObj.query.latitude = location.latitude.toString();
+  urlObj.query.longitude = location.longitude.toString();
+  urlObj.query.timezonestring = location.timezone;
+  urlObj.query.method = "3";
+
+  return minUrl.format(urlObj);
 };
 
 salat.get = function(location) {

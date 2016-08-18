@@ -7,8 +7,9 @@ var config = {
   templatePath: "app/templates",
   configPath:   "config",
   external: {
-    geoService:       "https://freegeoip.net/json/",
-    salatTimeService: "https://api.aladhan.com"
+    geoLocationService: "https://nominatim.openstreetmap.org/reverse?format=json&zoom=15&addressdetails=1",
+    geoIPService:       "https://freegeoip.net/json/",
+    salatTimeService:   "https://api.aladhan.com/timings/"
   }
 };
 
