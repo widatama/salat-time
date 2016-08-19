@@ -17,5 +17,6 @@ Location based daily salat schedule
 
 ## Credit
 
-1. Geoip from [http://freegeoip.net](http://freegeoip.net)
-2. Salat time from [http://api.aladhan.com](http://api.aladhan.com)
+1. Reverse geolocation from [https://nominatim.openstreetmap.org/](https://nominatim.openstreetmap.org/)
+2. Geoip from [https://freegeoip.net](https://freegeoip.net)
+3. Salat time from [https://api.aladhan.com](https://api.aladhan.com)

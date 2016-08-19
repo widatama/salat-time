@@ -1,7 +1,7 @@
 {
   "name": "salat-time",
   "version": "0.1.0",
-  "description": "Vue application starter",
+  "description": "Location based daily salat schedule",
   "main": "index.js",
   "scripts": {
     "start": "npm run clean && npm run webpack-dev",
