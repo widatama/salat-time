@@ -1,11 +1,12 @@
 :root {
   --ft-sans-serif: "Lato", Helvetica, Arial, sans-serif;
 
-  --cl-bg-header: #333333;
-  --cl-border: #BBBBBB;
+  --cl-bg-header: #333;
+  --cl-border:    #555;
+  --cl-bg-base:   #fff;
 
-  --cl-text: #333333;
-  --cl-text-inverse: #FFFFFF;
+  --cl-text:         #333;
+  --cl-text-inverse: #fff;
 }
 
 @custom-media --bp-large screen and (width >= 1200px);

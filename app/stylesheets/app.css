@@ -10,6 +10,7 @@
 @import "./components/app";
 @import "./components/header";
 @import "./components/loading-cue";
+@import "./components/notification";
 @import "./components/time";
 @import "./components/location";
 @import "./components/salat";

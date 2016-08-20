@@ -1,25 +1,23 @@
 <template lang="pug">
 div.app
   header.app-header
-    .app__title
+    h1.app__title
       strong Salat
       | Time
     current-time-display
-  template(v-if="isLoading")
-    .flex-container
+  section.app-content
+    template(v-if="isLoading")
       loading-cue-display( :loading-text="appPhase")
-  template(v-else)
-    template(v-if="isError")
-      .flex-container
-        notification-display( :notification-message="appError")
     template(v-else)
-      .flex-container
-        .flex-group.flex-group--two
+      template(v-if="isError")
+        notification-display( :notification-message="appError")
+      template(v-else)
+        .salat-next
           salat-display( :salat="nextSalat", disp-type="next")
 
           location-display( :location="location")
 
-        .flex-group
+        .salat-today
           salat-list-display( :salat-list="todaySalat")
 </template>
 

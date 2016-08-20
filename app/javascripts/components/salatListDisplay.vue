@@ -1,8 +1,7 @@
 <template lang="pug">
-.salat-list
-  ul.salat-items
-    li.salat-item(v-for="salat in salatList")
-      salat-display( :salat="salat")
+ul.salat-items
+  li.salat-item(v-for="salat in salatList")
+    salat-display( :salat="salat")
 </template>
 
 <script>

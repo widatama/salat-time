@@ -1,28 +1,48 @@
 
-.salat-list {
-  border-top: solid .05em var(--cl-border);
-  padding-top: .7em;
+.salat-next {
+  flex-grow: 1;
+
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  @media (--bp-medium) {
+    max-width: 56%;
+    padding: 0 2%;
+    flex-grow: 2;
+  }
+
+  @media (--bp-large) {
+    max-width: 56%;
+    padding: 0 1.5%;
+    flex-grow: 2;
+  }
+}
+
+.salat-today {
+  padding: 15px;
+  flex-grow: 2;
 
   @media (--bp-medium) {
     font-size: 1.25em;
     line-height: 1.695;
 
-    padding-left: .75em;
-    padding-top: 0;
+    padding: 0 2%;
 
-    border-top: none;
-    border-left: solid 1px var(--cl-border);
+    box-shadow: -1px 0 0 0 var(--cl-border);
+    flex-grow: 1;
   }
 
   @media (--bp-large) {
     font-size: 3em;
     line-height: 1.55;
 
-    padding-left: .75em;
-    padding-top: 0;
+    padding: 0 1.5%;
 
-    border-top: none;
-    border-left: solid 1px var(--cl-border);
+    box-shadow: -1px 0 0 0 var(--cl-border);
+    flex-grow: 1;
   }
 }
 
@@ -30,25 +50,12 @@
   overflow: auto;
 
   list-style-type: none;
+
+  margin: 0;
 }
 
 .salat-item {
   overflow: auto;
-}
-
-.salat {
-
-  &--next {
-    margin: 3em 0 .75em;
-
-    @media (--bp-medium) {
-      margin: 0;
-    }
-
-    @media (--bp-large) {
-      margin: 0;
-    }
-  }
 }
 
 .salat__name {

@@ -4,15 +4,14 @@
   Base
 */
 
-body
-{
-    font-family: var(--ft-sans-serif);
-    font-size: 125%;
-    font-size: 20px;
-    line-height: 1.5;
+body {
+  font-family: var(--ft-sans-serif);
+  font-size: 125%;
+  font-size: 20px;
+  line-height: 1.5;
 
-    -webkit-text-size-adjust: 100%;
-    font-feature-settings: 'liga' 1;
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: 'liga' 1;
 }
 
 
@@ -21,15 +20,11 @@ body
   Headings
 */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6
-{
-    font-family: var(--ft-sans-serif);
-    font-weight: 400;
+h1 {
+  font-family: var(--ft-sans-serif);
+  font-weight: 400;
+  font-size: 1em;
 
-    margin: 0;
+  margin: 0;
+  padding: 0;
 }
