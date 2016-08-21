@@ -1,8 +1,9 @@
 
 .notification {
+  display: flex;
+
   justify-content: center;
   align-items: center;
-  display: flex;
   flex-grow: 1;
 
   @media (--bp-medium) {
