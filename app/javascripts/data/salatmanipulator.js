@@ -21,6 +21,8 @@ manipulator.transformSalatList = function transformSalatList(salatList) {
 
   delete salatList.timings.Sunrise;
   delete salatList.timings.Sunset;
+  delete salatList.timings.Imsak;
+  delete salatList.timings.Midnight;
 
   salatArray = generateSalatArray(salatList.timings, salatList.date.readable);
 
