@@ -1,5 +1,5 @@
 import moment from 'moment';
-import minUrl from 'min-url';
+import URL from 'url-parse';
 
 import config from '../../../config/app.config';
 
@@ -10,15 +10,18 @@ import manipulator from './salatmanipulator';
 const salat = {};
 
 function generateUrl(location, timestamp) {
-  const urlObj = minUrl.parse(config.external.salatTimeService, true);
+  const urlObj = new URL(config.external.salatTimeService, true);
+  const { query } = urlObj;
 
   urlObj.pathname = [urlObj.pathname, timestamp].join('');
-  urlObj.query.latitude = location.latitude.toString();
-  urlObj.query.longitude = location.longitude.toString();
-  urlObj.query.timezonestring = location.timezone;
-  urlObj.query.method = '3';
+  query.latitude = location.latitude.toString();
+  query.longitude = location.longitude.toString();
+  query.timezonestring = location.timezone;
+  query.method = '3';
 
-  return minUrl.format(urlObj);
+  urlObj.set('query', query);
+
+  return urlObj.href;
 }
 
 salat.get = (location) => {

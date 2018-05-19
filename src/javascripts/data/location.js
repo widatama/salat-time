@@ -1,5 +1,5 @@
 import jstz from 'jstz';
-import minUrl from 'min-url';
+import URL from 'url-parse';
 
 import config from '../../../config/app.config';
 
@@ -11,18 +11,19 @@ import manipulator from './locationmanipulator';
 const location = {};
 
 function generateGeoIPUrl() {
-  const urlObj = minUrl.parse(config.external.geoIPService, true);
-
-  return minUrl.format(urlObj);
+  return config.external.geoIPService;
 }
 
 function generateReverseGeolocationUrl(coordinates) {
-  const urlObj = minUrl.parse(config.external.geoLocationService, true);
+  const urlObj = new URL(config.external.geoLocationService, true);
+  const { query } = urlObj;
 
-  urlObj.query.lat = coordinates.latitude;
-  urlObj.query.lon = coordinates.longitude;
+  query.lat = coordinates.latitude;
+  query.lon = coordinates.longitude;
 
-  return minUrl.format(urlObj);
+  urlObj.set('query', query);
+
+  return urlObj.href;
 }
 
 location.get = () => {
@@ -40,6 +41,7 @@ location.get = () => {
   }, () => {
     // Use geoip if geolocation is not working, e.g. on Chromium
     const url = generateGeoIPUrl();
+
     return xhr.get(url).then((response) => {
       return manipulator.transformIPLocationResponse(response);
     });

@@ -76,9 +76,9 @@
   },
   "dependencies": {
     "jstz": "^2.0.0",
-    "min-url": "^1.4.0",
     "moment": "^2.22.1",
     "normalize.css": "^7.0.0",
+    "url-parse": "^1.4.0",
     "vue": "^2.5.16",
     "vuex": "^3.0.1"
   }
