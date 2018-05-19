@@ -75,8 +75,8 @@
     "webpack-stylish": "^0.1.8"
   },
   "dependencies": {
+    "date-fns": "^2.0.0-alpha.8",
     "jstz": "^2.0.0",
-    "moment": "^2.22.1",
     "normalize.css": "^7.0.0",
     "url-parse": "^1.4.0",
     "vue": "^2.5.16",

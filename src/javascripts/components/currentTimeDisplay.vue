@@ -9,33 +9,33 @@
 </template>
 
 <script>
-  import moment from 'moment';
+  import { format } from 'date-fns';
 
   const INTERVAL = 1000;
 
   export default {
     data() {
       return {
-        dateObj: moment()
-      }
+        dateObj: new Date(),
+      };
     },
     computed: {
       day() {
-        return this.dateObj.format('DD');
+        return format(this.dateObj, 'd');
       },
       month() {
-        return this.dateObj.format('MMM');
+        return format(this.dateObj, 'MMM');
       },
       hour() {
-        return this.dateObj.format('HH');
+        return format(this.dateObj, 'HH');
       },
       minute() {
-        return this.dateObj.format('mm');
+        return format(this.dateObj, 'mm');
       }
     },
     methods: {
       updateTime() {
-        this.$data.dateObj = moment();
+        this.dateObj = new Date();
       }
     },
     created() {

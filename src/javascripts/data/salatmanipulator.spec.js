@@ -1,5 +1,5 @@
 import tape from 'tape';
-import moment from 'moment';
+import { addDays, format, isAfter, parse } from 'date-fns';
 
 import salatManipulator from './salatmanipulator';
 
@@ -15,8 +15,8 @@ tape('Salat data manipulator', assert => {
       Isha: '19:24',
     },
     date: {
-      readable: moment().format('DD MMM YYYY'),
-      timestamp: moment().format('X'),
+      readable: format(new Date(), 'd MMM yyyy'),
+      timestamp: format(new Date(), 't'),
     },
   };
   const salatDataTomorrow = {
@@ -30,42 +30,41 @@ tape('Salat data manipulator', assert => {
       Isha: '19:24',
     },
     date: {
-      readable: moment()
-        .add(1, 'd')
-        .format('DD MMM YYYY'),
-      timestamp: moment()
-        .add(1, 'd')
-        .format('X'),
+      readable: format(addDays(new Date(), 1), 'd MMM yyyy'),
+      timestamp: format(addDays(new Date(), 1), 't'),
     },
   };
 
   const salatArrayToday = salatManipulator.transformSalatData(salatDataToday);
   const nextSalat = salatManipulator.getNextSalat(salatDataToday, salatDataTomorrow);
-  const nextSalatTime = moment(`${nextSalat.date} ${nextSalat.time}`, 'DD MMM YYYY HH : mm');
+  const nextSalatTime = parse(`${nextSalat.date} ${nextSalat.time}`, 'd MMM yyyy HH : mm', new Date());
 
   assert.equal(
     Object.prototype.toString.call(salatArrayToday),
     '[object Array]',
     'Generates an array from salat list',
   );
+
   assert.equal(
     Object.prototype.toString.call(salatArrayToday[0]),
     '[object Object]',
     'Generated salat array item is an object',
   );
+
   assert.deepEqual(
     salatArrayToday[0],
     {
       name: 'Fajr',
       date: salatDataToday.date.readable,
-      time: moment(salatDataToday.timings.Fajr, 'HH:mm').format('HH : mm'),
+      time: salatDataToday.timings.Fajr.split(':').join(' : '),
     },
     'Generated salat array item has proper structure',
   );
+
   assert.equal(salatArrayToday.length, 5, 'Generated salat array has exactly five items');
 
   assert.equal(
-    moment().isSameOrBefore(nextSalatTime),
+    isAfter(nextSalatTime, new Date()),
     true,
     'Next salat time is the same or after current time',
   );

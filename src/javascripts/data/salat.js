@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { addDays, format } from 'date-fns';
 import URL from 'url-parse';
 
 import config from '../../../config/app.config';
@@ -25,12 +25,10 @@ function generateUrl(location, timestamp) {
 }
 
 salatModule.get = location => {
-  const urlToday = generateUrl(location, moment().format('X'));
+  const urlToday = generateUrl(location, format(new Date(), 't'));
   const urlTomorrow = generateUrl(
     location,
-    moment()
-      .add(1, 'd')
-      .format('X'),
+    format(addDays(new Date(), 1), 't'),
   );
 
   return Promise.all([xhr.get(urlToday), xhr.get(urlTomorrow)]).then(salat => {

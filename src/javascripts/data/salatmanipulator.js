@@ -1,10 +1,10 @@
-import moment from 'moment';
+import { isAfter, parse } from 'date-fns';
 
 const manipulator = {};
 
-function generateSalatArray(salatList, date) {
-  const result = Object.keys(salatList).map(key => {
-    const time = moment(salatList[key], 'HH:mm').format('HH : mm');
+function generateSalatArray(salatTiming, date) {
+  const result = Object.keys(salatTiming).map(key => {
+    const time = salatTiming[key].split(':').join(' : ');
 
     return {
       name: key,
@@ -17,9 +17,9 @@ function generateSalatArray(salatList, date) {
 }
 
 function isNextSalat(salat) {
-  const salatTime = moment(`${salat.date} ${salat.time}`, 'DD MMM YYYY HH : mm');
+  const salatTime = parse(`${salat.date} ${salat.time}`, 'd MMM yyyy HH : mm', new Date());
 
-  if (moment().isSameOrBefore(salatTime)) {
+  if (isAfter(salatTime, new Date())) {
     return true;
   }
 
