@@ -1,25 +1,25 @@
-var webpack = require("webpack");
+const path = require('path');
 
-var OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
+const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
+const WebpackStylish = require('webpack-stylish');
 
-var config = require("./webpack.config");
+const webpackConfig = require('./webpack.config');
+const appConfig = require('./app.config');
 
-config.output = {
-  path:       "./public/",
-  publicPath: "",
-  filename:   "assets/javascripts/[name].js"
+webpackConfig.mode = 'production';
+webpackConfig.stats = 'none';
+
+webpackConfig.output = {
+  path: path.resolve('', `./${appConfig.paths.dist.path}/`),
+  publicPath: '',
+  filename: `${appConfig.paths.dist.javascriptsPath}/${appConfig.bundleNames.js}`,
 };
 
-config.plugins = (config.plugins || []).concat([
+webpackConfig.plugins = (webpackConfig.plugins || []).concat([
   new OptimizeCSSPlugin({
-    cssProcessorOptions: {discardComments: {removeAll: true}}
+    cssProcessorOptions: { discardComments: { removeAll: true } },
   }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  }),
-  new webpack.optimize.OccurenceOrderPlugin()
+  new WebpackStylish(),
 ]);
 
-module.exports = config;
+module.exports = webpackConfig;
