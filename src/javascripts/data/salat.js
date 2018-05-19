@@ -7,7 +7,7 @@ import xhr from '../modules/xhr';
 
 import manipulator from './salatmanipulator';
 
-const salat = {};
+const salatModule = {};
 
 function generateUrl(location, timestamp) {
   const urlObj = new URL(config.external.salatTimeService, true);
@@ -24,12 +24,17 @@ function generateUrl(location, timestamp) {
   return urlObj.href;
 }
 
-salat.get = (location) => {
+salatModule.get = location => {
   const urlToday = generateUrl(location, moment().format('X'));
-  const urlTomorrow = generateUrl(location, moment().add(1, 'd').format('X'));
+  const urlTomorrow = generateUrl(
+    location,
+    moment()
+      .add(1, 'd')
+      .format('X'),
+  );
 
-  return Promise.all([xhr.get(urlToday), xhr.get(urlTomorrow)]).then((salat) => {
-    const todaySalat = manipulator.transformSalatList(salat[0].data);
+  return Promise.all([xhr.get(urlToday), xhr.get(urlTomorrow)]).then(salat => {
+    const todaySalat = manipulator.transformSalatData(salat[0].data);
     const nextSalat = manipulator.getNextSalat(salat[0].data, salat[1].data);
 
     return {
@@ -39,4 +44,4 @@ salat.get = (location) => {
   });
 };
 
-export default salat;
+export default salatModule;

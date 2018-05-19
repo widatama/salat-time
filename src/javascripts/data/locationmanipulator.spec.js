@@ -1,8 +1,8 @@
 import tape from 'tape';
 import locationManipulator from './locationmanipulator';
 
-tape('Location data manipulator', (t) => {
-  t.test('Transform freegeoip response', (assert) => {
+tape('Location data manipulator', t => {
+  t.test('Transform freegeoip response', assert => {
     // This is the location data sample fetched from freegeoip
     const rawLocation = {
       ip: '202.62.16.22',
@@ -36,7 +36,7 @@ tape('Location data manipulator', (t) => {
     assert.equal(typeof location.longitude, 'number', 'Longitude is a number');
   });
 
-  t.test('Transform nominatim response', (assert) => {
+  t.test('Transform nominatim response', assert => {
     // This is the reverse geolocation data sample fetched from nominatim
     const response = {
       address: {

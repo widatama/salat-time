@@ -1,7 +1,7 @@
 const geo = {};
 
-geo.locate = () => {
-  return new Promise((resolve, reject) => {
+geo.locate = () =>
+  new Promise((resolve, reject) => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(resolve, reject, {
         enableHighAccuracy: true,
@@ -10,6 +10,5 @@ geo.locate = () => {
       reject(Error('Geolocation not available'));
     }
   });
-};
 
 export default geo;

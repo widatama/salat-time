@@ -11,11 +11,12 @@ function checkStatus(response) {
   throw error;
 }
 
-XhrModule.get = (url, options) => {
-  return fetch(url, options)
+XhrModule.get = (url, options) =>
+  fetch(url, options)
     .then(checkStatus)
     .then(response => response.json())
-    .catch((error) => { throw error; });
-};
+    .catch(error => {
+      throw error;
+    });
 
 export default XhrModule;

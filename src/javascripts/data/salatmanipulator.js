@@ -3,7 +3,7 @@ import moment from 'moment';
 const manipulator = {};
 
 function generateSalatArray(salatList, date) {
-  const result = Object.keys(salatList).map((key) => {
+  const result = Object.keys(salatList).map(key => {
     const time = moment(salatList[key], 'HH:mm').format('HH : mm');
 
     return {
@@ -16,19 +16,6 @@ function generateSalatArray(salatList, date) {
   return result;
 }
 
-manipulator.transformSalatList = function transformSalatList(salatList) {
-  let salatArray = [];
-
-  delete salatList.timings.Sunrise;
-  delete salatList.timings.Sunset;
-  delete salatList.timings.Imsak;
-  delete salatList.timings.Midnight;
-
-  salatArray = generateSalatArray(salatList.timings, salatList.date.readable);
-
-  return salatArray;
-};
-
 function isNextSalat(salat) {
   const salatTime = moment(`${salat.date} ${salat.time}`, 'DD MMM YYYY HH : mm');
 
@@ -39,9 +26,28 @@ function isNextSalat(salat) {
   return false;
 }
 
-manipulator.getNextSalat = function getNextSalat(salatListToday, salatListTomorrow) {
-  const salatArrayToday = manipulator.transformSalatList(salatListToday);
-  const salatArrayTomorrow = manipulator.transformSalatList(salatListTomorrow);
+function cleanupSalatTiming(salatTiming) {
+  const result = {};
+
+  Object.assign(result, salatTiming);
+
+  delete result.Sunrise;
+  delete result.Sunset;
+  delete result.Imsak;
+  delete result.Midnight;
+
+  return result;
+}
+
+manipulator.transformSalatData = salatData => {
+  const salatTiming = cleanupSalatTiming(salatData.timings);
+
+  return generateSalatArray(salatTiming, salatData.date.readable);
+};
+
+manipulator.getNextSalat = (salatDataToday, salatDataTomorrow) => {
+  const salatArrayToday = manipulator.transformSalatData(salatDataToday);
+  const salatArrayTomorrow = manipulator.transformSalatData(salatDataTomorrow);
 
   return salatArrayToday.concat(salatArrayTomorrow).find(isNextSalat);
 };

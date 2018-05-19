@@ -26,26 +26,26 @@ function generateReverseGeolocationUrl(coordinates) {
   return urlObj.href;
 }
 
-location.get = () => {
+location.get = () =>
   // Try to use reverse geolocation first
-  return geo.locate().then((position) => {
-    const url = generateReverseGeolocationUrl(position.coords);
-    return xhr.get(url).then((response) => {
-      const result = manipulator.transformReverseGeolocationResponse(response);
-      const timezone = jstz.determine();
+  geo.locate().then(
+    position => {
+      const url = generateReverseGeolocationUrl(position.coords);
+      return xhr.get(url).then(response => {
+        const result = manipulator.transformReverseGeolocationResponse(response);
+        const timezone = jstz.determine();
 
-      result.timezone = timezone.name();
+        result.timezone = timezone.name();
 
-      return result;
-    });
-  }, () => {
-    // Use geoip if geolocation is not working, e.g. on Chromium
-    const url = generateGeoIPUrl();
+        return result;
+      });
+    },
+    () => {
+      // Use geoip if geolocation is not working, e.g. on Chromium
+      const url = generateGeoIPUrl();
 
-    return xhr.get(url).then((response) => {
-      return manipulator.transformIPLocationResponse(response);
-    });
-  });
-};
+      return xhr.get(url).then(response => manipulator.transformIPLocationResponse(response));
+    },
+  );
 
 export default location;
