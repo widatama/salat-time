@@ -1,22 +1,22 @@
 
 .location {
-  font-size: 1.5em;
-  font-weight: 200;
 
   overflow: hidden;
-
-  white-space: nowrap;
+  font-size: 1.5em;
+  font-weight: 200;
   text-overflow: ellipsis;
 
+  white-space: nowrap;
+
   @media (--bp-medium) {
-    font-size: 2.25em;
 
     margin: 0;
+    font-size: 2.25em;
   }
 
   @media (--bp-large) {
-    font-size: 4.5em;
 
     margin: 0;
+    font-size: 4.5em;
   }
 }

@@ -1,11 +1,11 @@
 
 .salat-next {
-  flex-grow: 1;
-
-  padding: 15px;
 
   display: flex;
+
+  padding: 15px;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: flex-end;
 
   @media (--bp-medium) {
@@ -26,20 +26,20 @@
   flex-grow: 2;
 
   @media (--bp-medium) {
-    font-size: 1.25em;
-    line-height: 1.695;
 
     padding: 0 2%;
+    font-size: 1.25em;
+    line-height: 1.695;
 
     box-shadow: -1px 0 0 0 var(--cl-border);
     flex-grow: 1;
   }
 
   @media (--bp-large) {
-    font-size: 3em;
-    line-height: 1.55;
 
     padding: 0 1.5%;
+    font-size: 3em;
+    line-height: 1.55;
 
     box-shadow: -1px 0 0 0 var(--cl-border);
     flex-grow: 1;
@@ -47,11 +47,11 @@
 }
 
 .salat-items {
+  padding: 0;
+  margin: 0;
   overflow: auto;
 
   list-style-type: none;
-
-  margin: 0;
 }
 
 .salat-item {
@@ -66,18 +66,18 @@
 
   &--next {
     float: none;
+    margin-bottom: 0.175em;
     font-size: 2em;
     line-height: 1;
-    margin-bottom: .175em;
 
     @media (--bp-medium) {
-      font-size: 3em;
       margin-bottom: 0;
+      font-size: 3em;
     }
 
     @media (--bp-large) {
-      font-size: 6em;
       margin-bottom: 0;
+      font-size: 6em;
     }
   }
 }

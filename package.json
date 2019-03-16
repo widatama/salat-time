@@ -9,7 +9,9 @@
     "webpack-build": "NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.prod.config.js",
     "webpack-dev": "NODE_ENV=development webpack-dev-server --https --inline --hot --colors --config ./config/webpack.dev.config.js",
     "test": "karma start config/karma.conf.js",
-    "lint": "eslint src/*/**/*.js --fix",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint src/*/**/*.js --fix",
+    "lint:css": "stylelint src/*/**/*.css --fix",
     "format": "prettier src/*/**/*.js --write"
   },
   "author": "Danu Widatama",
@@ -42,6 +44,10 @@
       "*.js": [
         "eslint --fix",
         "prettier --write",
+        "git add"
+      ],
+      "*.css": [
+        "stylelint --fix",
         "git add"
       ]
     }
@@ -85,6 +91,8 @@
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.0.0",
     "style-loader": "^0.23.1",
+    "stylelint": "^9.10.1",
+    "stylelint-config-primer": "^5.0.0",
     "tap-summary": "^4.0.0",
     "tape": "^4.10.1",
     "uglifyjs-webpack-plugin": "^2.1.2",

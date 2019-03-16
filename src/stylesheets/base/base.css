@@ -3,39 +3,20 @@
   Basic
 */
 
+/* stylelint-disable selector-max-type */
 html,
 body {
   height: 100%;
+  color: var(--cl-text);
+  background: var(--cl-bg-base);
 }
+/* stylelint-enable selector-max-type */
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
 }
-
-body {
-  background: var(--cl-bg-base);
-
-  color: var(--cl-text);
-}
-
-
-/*
-
-  Lists
-*/
-
-ul {
-  margin: 0;
-  margin-bottom: 1.6em;
-  padding: 0;
-}
-
-ul {
-  list-style: disc;
-}
-
 
 /*
 
@@ -43,13 +24,11 @@ ul {
 */
 
 ::selection {
-  background: #333333;
-
-  color: #FFFFFF;
+  color: #fff;
+  background: #333;
 }
 
 ::-moz-selection {
-  background: #333333;
-
-  color: #FFFFFF;
+  color: #fff;
+  background: #333;
 }
