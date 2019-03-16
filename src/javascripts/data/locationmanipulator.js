@@ -3,6 +3,8 @@ function transformIPLocationResponse(response) {
 
   result.country = response.country_name;
   result.city = response.city;
+  result.village = response.village;
+  result.state = response.state;
   result.timezone = response.time_zone;
   result.latitude = parseFloat(response.latitude);
   result.longitude = parseFloat(response.longitude);
@@ -20,6 +22,9 @@ function transformReverseGeolocationResponse(response) {
   } else {
     result.city = response.address.city;
   }
+
+  result.village = response.address.village;
+  result.state = response.address.state;
 
   result.latitude = parseFloat(response.lat);
   result.longitude = parseFloat(response.lon);

@@ -9,6 +9,6 @@
   --cl-text-inverse: #fff;
 }
 
-@custom-media --bp-large screen and (width >= 1200px);
-@custom-media --bp-medium screen and (width >= 700px) and (width <= 1199px);
+@custom-media --bp-large screen and (width >= 1100px);
+@custom-media --bp-medium screen and (width >= 700px) and (width <= 1099px);
 @custom-media --bp-small screen and (width <= 699px);

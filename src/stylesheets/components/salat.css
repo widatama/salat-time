@@ -30,8 +30,6 @@
     padding: 0 2%;
     font-size: 1.25em;
     line-height: 1.695;
-
-    box-shadow: -1px 0 0 0 var(--cl-border);
     flex-grow: 1;
   }
 
@@ -40,8 +38,6 @@
     padding: 0 1.5%;
     font-size: 3em;
     line-height: 1.55;
-
-    box-shadow: -1px 0 0 0 var(--cl-border);
     flex-grow: 1;
   }
 }
