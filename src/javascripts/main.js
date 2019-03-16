@@ -3,9 +3,10 @@ import Vue from 'vue';
 import '../stylesheets/app.css';
 
 import App from './components/app.vue';
-import store from './modules/store/';
+import store from './modules/store';
 
-const salatTime = new Vue({
+// eslint-disable-next-line no-new
+new Vue({
   name: 'SalatTime',
   el: '#vue',
   components: {

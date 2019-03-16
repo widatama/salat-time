@@ -10,7 +10,7 @@
     "webpack-dev": "NODE_ENV=development webpack-dev-server --https --inline --hot --colors --config ./config/webpack.dev.config.js",
     "test": "karma start config/karma.conf.js",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint src/*/**/*.js --fix",
+    "lint:js": "eslint src/**/*.js --fix",
     "lint:css": "stylelint src/*/**/*.css --fix",
     "format": "prettier src/*/**/*.js --write"
   },
