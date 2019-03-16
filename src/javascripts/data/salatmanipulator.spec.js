@@ -37,7 +37,11 @@ tape('Salat data manipulator', assert => {
 
   const salatArrayToday = salatManipulator.transformSalatData(salatDataToday);
   const nextSalat = salatManipulator.getNextSalat(salatDataToday, salatDataTomorrow);
-  const nextSalatTime = parse(`${nextSalat.date} ${nextSalat.time}`, 'd MMM yyyy HH : mm', new Date());
+  const nextSalatTime = parse(
+    `${nextSalat.date} ${nextSalat.time}`,
+    'd MMM yyyy HH : mm',
+    new Date(),
+  );
 
   assert.equal(
     Object.prototype.toString.call(salatArrayToday),

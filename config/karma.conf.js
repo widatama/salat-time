@@ -1,4 +1,5 @@
 const karmaChromeLauncher = require('karma-chrome-launcher');
+const karmaFirefoxLauncher = require('karma-firefox-launcher');
 const karmaTap = require('karma-tap');
 const karmaTapPrettyReporter = require('karma-tap-pretty-reporter');
 const karmaWebpack = require('karma-webpack');
@@ -15,15 +16,15 @@ webpackConf.node = {
 
 webpackConf.stats = 'none';
 
-module.exports = (config) => {
+module.exports = config => {
   config.set({
     plugins: [
-      karmaChromeLauncher,
+      karmaFirefoxLauncher,
       karmaTap,
       karmaTapPrettyReporter,
       karmaWebpack,
     ],
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
     frameworks: ['tap'],
     reporters: ['tap-pretty'],
     tapReporter: {
@@ -36,12 +37,14 @@ module.exports = (config) => {
       '../src/javascripts/test_entry.js': ['webpack'],
     },
     client: {
-      captureConsole: false,
+      captureConsole: true,
     },
     webpack: webpackConf,
     webpackMiddleware: {
       noInfo: true,
     },
+    port: 9899,
+    autoWatch: false,
     singleRun: true,
     colors: true,
   });

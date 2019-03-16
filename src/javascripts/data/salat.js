@@ -26,10 +26,7 @@ function generateUrl(location, timestamp) {
 
 salatModule.get = location => {
   const urlToday = generateUrl(location, format(new Date(), 't'));
-  const urlTomorrow = generateUrl(
-    location,
-    format(addDays(new Date(), 1), 't'),
-  );
+  const urlTomorrow = generateUrl(location, format(addDays(new Date(), 1), 't'));
 
   return Promise.all([xhr.get(urlToday), xhr.get(urlTomorrow)]).then(salat => {
     const todaySalat = manipulator.transformSalatData(salat[0].data);
