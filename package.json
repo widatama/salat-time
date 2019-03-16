@@ -3,6 +3,7 @@
   "description": "Location based daily salat schedule",
   "main": "index.js",
   "scripts": {
+
     "start": "npm run clean && npm run webpack-dev",
     "build": "npm run clean && npm run webpack-build",
     "clean": "node task/clean",
@@ -21,14 +22,17 @@
   "babel": {
     "presets": [
       [
-        "env",
+        "@babel/preset-env",
         {
           "modules": false
         }
-      ],
-      "stage-0"
+      ]
     ]
   },
+  "browserslist": [
+    "last 2 version",
+    "> 2%"
+  ],
   "prettier": {
     "printWidth": 100,
     "semi": true,
@@ -36,11 +40,11 @@
     "trailingComma": "all"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
     "eslint": "^5.15.2",
     "eslint-config-airbnb-base": "^13.1.0",
