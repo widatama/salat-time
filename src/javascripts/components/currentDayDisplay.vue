@@ -1,15 +1,12 @@
 <template lang="pug">
-.current-time
-  span.clock
-    | {{hour}}
-    span.clock__ticker &nbsp;:&nbsp;
-    | {{minute}}
+.current-day
+  | {{day}}&ensp;{{date}} {{month}} {{year}}
 </template>
 
 <script>
   import { format } from 'date-fns';
 
-  const INTERVAL = 1000;
+  const INTERVAL = 60000; // a minute
 
   export default {
     data() {
@@ -18,11 +15,17 @@
       };
     },
     computed: {
-      hour() {
-        return format(this.dateObj, 'HH');
+      day() {
+        return format(this.dateObj, 'EEEE');
       },
-      minute() {
-        return format(this.dateObj, 'mm');
+      date() {
+        return format(this.dateObj, 'dd');
+      },
+      month() {
+        return format(this.dateObj, 'MMM');
+      },
+      year() {
+        return format(this.dateObj, 'yyyy');
       }
     },
     methods: {
@@ -35,3 +38,4 @@
     }
   }
 </script>
+

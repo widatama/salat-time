@@ -26,18 +26,12 @@
   flex-grow: 2;
 
   @media (--bp-medium) {
-
     padding: 0 2%;
-    font-size: 1.25em;
-    line-height: 1.695;
     flex-grow: 1;
   }
 
   @media (--bp-large) {
-
     padding: 0 1.5%;
-    font-size: 3em;
-    line-height: 1.55;
     flex-grow: 1;
   }
 }
@@ -48,6 +42,16 @@
   overflow: auto;
 
   list-style-type: none;
+
+  @media (--bp-medium) {
+    font-size: 1.25em;
+    line-height: 1.695;
+  }
+
+  @media (--bp-large) {
+    font-size: 3em;
+    line-height: 1.55;
+  }
 }
 
 .salat-item {

@@ -1,10 +1,21 @@
+.current-day {
+  @media (--bp-small) {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+  }
+
+  @media (--bp-medium) {
+    font-size: 1em;
+  }
+
+  @media (--bp-large) {
+    font-size: 1.25em;
+    line-height: 1.695;
+  }
+}
 
 .current-time {
   float: right;
-}
-
-.current-date {
-  margin-right: 0.5em;
 }
 
 .clock__ticker {

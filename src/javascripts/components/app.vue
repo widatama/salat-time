@@ -18,6 +18,7 @@
           location-display( :location="location")
 
         .salat-today
+          current-day-display
           salat-list-display( :salat-list="todaySalat")
 </template>
 
@@ -27,6 +28,7 @@
   import locationDisplay from './locationDisplay.vue';
   import salatDisplay from './salatDisplay.vue';
   import salatListDisplay from './salatListDisplay.vue';
+  import currentDayDisplay from './currentDayDisplay.vue';
   import currentTimeDisplay from './currentTimeDisplay.vue';
   import loadingCueDisplay from './loadingCueDisplay.vue';
   import notificationDisplay from './notificationDisplay.vue';
@@ -38,6 +40,7 @@
       'location-display': locationDisplay,
       'salat-display': salatDisplay,
       'salat-list-display': salatListDisplay,
+      'current-day-display': currentDayDisplay,
       'current-time-display': currentTimeDisplay,
       'loading-cue-display': loadingCueDisplay,
       'notification-display': notificationDisplay
