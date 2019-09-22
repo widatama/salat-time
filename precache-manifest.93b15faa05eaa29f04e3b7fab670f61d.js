@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/apple-touch-icon-167x167.png"
   },
   {
-    "revision": "39a76fc78abc74271ecd82bf8f6f1b45",
+    "revision": "91f9bfb294d4e352e06ee1da59d4cf71",
     "url": "index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/apple-touch-icon-180x180.png"
   },
   {
-    "url": "assets/stylesheets/app-5d9553ddd2c66ef3ef58.css"
+    "url": "assets/stylesheets/app-73e54913dfa3d93695b6.css"
   },
   {
     "revision": "adc2ee32c4a2c2cbd91b23decfc807e8",
@@ -23,7 +23,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/favicon.ico"
   },
   {
-    "url": "assets/javascripts/app-5d9553ddd2c66ef3ef58.js.LICENSE"
+    "url": "assets/javascripts/app-73e54913dfa3d93695b6.js.LICENSE"
   },
   {
     "revision": "488496b312be64e7b9636b646d1cfb8a",
@@ -46,7 +46,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/firefox_app_60x60.png"
   },
   {
-    "url": "assets/javascripts/app-5d9553ddd2c66ef3ef58.js"
+    "url": "assets/javascripts/app-73e54913dfa3d93695b6.js"
   },
   {
     "revision": "f2f2cf9ad4897cbaf9ff615beced68c4",
