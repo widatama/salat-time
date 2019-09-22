@@ -96,12 +96,12 @@
     "uglifyjs-webpack-plugin": "^2.1.2",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.9",
-    "webapp-webpack-plugin": "^2.6.1",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1",
+    "webapp-webpack-plugin": "^2.7.1",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1",
     "webpack-stylish": "^0.1.8",
-    "workbox-webpack-plugin": "^4.1.1"
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "dependencies": {
     "date-fns": "^2.0.0-alpha.8",
