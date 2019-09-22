@@ -6,9 +6,6 @@
   font-size: 0.75em;
   line-height: 2;
 
-  color: var(--cl-text-inverse);
-  background-color: var(--cl-bg-header);
-
   @media (--bp-medium) {
     padding: 1.5% 2%;
     font-size: 1.25em;
