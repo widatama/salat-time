@@ -104,10 +104,10 @@
     "workbox-webpack-plugin": "^4.3.1"
   },
   "dependencies": {
-    "date-fns": "^2.0.0-alpha.8",
+    "date-fns": "^2.2.1",
     "jstz": "^2.1.1",
     "normalize.css": "^8.0.1",
-    "url-parse": "^1.4.4",
+    "url-parse": "^1.4.7",
     "vue": "^2.6.10",
     "vuex": "^3.1.1"
   }
