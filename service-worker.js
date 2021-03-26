@@ -11,15 +11,19 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.93b15faa05eaa29f04e3b7fab670f61d.js"
+  "/precache-manifest.7804de01711a020938dbfd703ba59733.js"
 );
 
-workbox.core.skipWaiting();
+workbox.core.setCacheNameDetails({prefix: "salat-time"});
 
-workbox.core.clientsClaim();
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
