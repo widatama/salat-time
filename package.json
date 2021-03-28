@@ -1,18 +1,11 @@
 {
   "name": "salat-time",
-  "description": "Location based daily salat schedule",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "npm run clean && npm run webpack-dev",
-    "build": "npm run clean && npm run webpack-build",
-    "clean": "node task/clean",
-    "webpack-build": "NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.prod.config.js",
-    "webpack-dev": "NODE_ENV=development webpack-dev-server --https --inline --hot --colors --config ./config/webpack.dev.config.js",
-    "test": "karma start config/karma.conf.js",
-    "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint src/**/*.js --fix",
-    "lint:css": "stylelint src/*/**/*.css --fix",
-    "format": "prettier src/*/**/*.js --write"
+    "build": "vue-cli-service build",
+    "start": "vue-cli-service serve",
+    "lint": "vue-cli-service lint",
+    "test": "karma start ./karma.conf.js"
   },
   "author": "Danu Widatama",
   "license": "MIT",
@@ -20,95 +13,55 @@
     "type": "git",
     "url": "git+https://gitlab.com/widatama/salat-time.git"
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false
-        }
-      ]
-    ]
-  },
-  "browserslist": [
-    "last 2 version",
-    "> 2%"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
-    ],
-    "*.css": [
-      "stylelint --fix",
-      "git add"
-    ]
-  },
-  "prettier": {
-    "printWidth": 100,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "all"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@babel/register": "^7.6.0",
-    "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "eslint": "^6.4.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-import-resolver-webpack": "^0.11.1",
-    "eslint-plugin-import": "^2.18.2",
-    "html-webpack-exclude-assets-plugin": "0.0.7",
-    "html-webpack-plugin": "^3.2.0",
-    "husky": "^3.0.5",
-    "karma": "^4.3.0",
-    "karma-detect-browsers": "^2.3.3",
-    "karma-firefox-launcher": "^1.2.0",
-    "karma-tap": "^4.1.4",
-    "karma-tap-pretty-reporter": "^4.1.0",
-    "karma-webpack": "^4.0.2",
-    "lint-staged": "^9.2.5",
-    "mini-css-extract-plugin": "^0.8.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "postcss-cssnext": "^3.1.0",
-    "postcss-import": "^12.0.1",
-    "postcss-loader": "^3.0.0",
-    "postcss-nested": "^4.1.2",
-    "prettier": "^1.18.2",
-    "pug": "^2.0.4",
-    "pug-loader": "^2.4.0",
-    "pug-plain-loader": "^1.0.0",
-    "style-loader": "^1.0.0",
-    "stylelint": "^11.0.0",
-    "stylelint-config-recommended": "^3.0.0",
-    "tap-summary": "^4.0.0",
-    "tape": "^4.11.0",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "vue-loader": "^15.7.1",
-    "vue-template-compiler": "^2.6.10",
-    "webapp-webpack-plugin": "^2.7.1",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1",
-    "webpack-stylish": "^0.1.8",
-    "workbox-webpack-plugin": "^4.3.1"
-  },
   "dependencies": {
-    "date-fns": "^2.2.1",
+    "core-js": "^3.6.5",
+    "date-fns": "^2.19.0",
     "jstz": "^2.1.1",
     "normalize.css": "^8.0.1",
-    "url-parse": "^1.4.7",
-    "vue": "^2.6.10",
-    "vuex": "^3.1.1"
+    "register-service-worker": "^1.7.1",
+    "url-parse": "^1.5.1",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^7.0.0",
+    "karma": "^6.2.0",
+    "karma-detect-browsers": "^2.3.3",
+    "karma-firefox-launcher": "^2.1.0",
+    "karma-tap": "^4.2.0",
+    "karma-tap-pretty-reporter": "^4.2.0",
+    "karma-webpack": "^4.0.2",
+    "lint-staged": "^9.5.0",
+    "postcss-custom-media": "^7.0.8",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.3",
+    "postcss-preset-env": "^6.7.0",
+    "tape": "^5.2.2",
+    "typescript": "~4.1.5",
+    "vue-cli-plugin-pug": "~2.0.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
   }
 }
