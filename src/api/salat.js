@@ -1,7 +1,7 @@
 import { addDays, format } from 'date-fns';
 import URL from 'url-parse';
 
-import request from '@/modules/request';
+import client from '@/modules/client';
 
 import manipulator from './salatmanipulator';
 
@@ -23,11 +23,11 @@ function generateUrl(location, timestamp) {
   return urlObj.href;
 }
 
-salatModule.get = location => {
+salatModule.get = (location) => {
   const urlToday = generateUrl(location, format(new Date(), 't'));
   const urlTomorrow = generateUrl(location, format(addDays(new Date(), 1), 't'));
 
-  return Promise.all([request.get(urlToday), request.get(urlTomorrow)]).then(salat => {
+  return Promise.all([client.get(urlToday), client.get(urlTomorrow)]).then((salat) => {
     const todaySalat = manipulator.transformSalatData(salat[0].data);
     const nextSalat = manipulator.getNextSalat(salat[0].data, salat[1].data);
 
