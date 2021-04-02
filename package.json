@@ -4,7 +4,9 @@
   "scripts": {
     "build": "vue-cli-service build",
     "start": "vue-cli-service serve",
-    "lint": "vue-cli-service lint",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:css": "stylelint src/*/**/*css --fix",
+    "lint:js": "vue-cli-service lint",
     "test": "karma start ./karma.conf.js"
   },
   "author": "Danu Widatama",
@@ -51,6 +53,8 @@
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.2.3",
     "postcss-preset-env": "^6.7.0",
+    "stylelint": "^13.12.0",
+    "stylelint-config-recommended": "^4.0.0",
     "tape": "^5.2.2",
     "typescript": "~4.1.5",
     "vue-cli-plugin-pug": "~2.0.0"
@@ -61,6 +65,10 @@
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
       "vue-cli-service lint",
+      "git add"
+    ],
+    "*css": [
+      "stylelint --fix",
       "git add"
     ]
   }
