@@ -8,15 +8,16 @@ const isError = (state) => {
   return appPhase.indexOf('error') > -1;
 };
 
-const appPhase = state => state.appPhase;
+const appPhase = (state) => state.appPhase;
 
-const appError = state => state.appError;
+const appError = (state) => state.appError;
 
-const location = state => state.location;
+const location = (state) => state.location;
 
-const todaySalat = state => state.todaySalat;
+const todaySalat = (state) => state.todaySalat;
+const tomorrowSalat = (state) => state.tomorrowSalat;
 
-const nextSalat = state => state.nextSalat;
+const nextSalat = (state) => state.nextSalat;
 
 const getters = {
   isLoading,
@@ -25,6 +26,7 @@ const getters = {
   appError,
   location,
   todaySalat,
+  tomorrowSalat,
   nextSalat,
 };
 

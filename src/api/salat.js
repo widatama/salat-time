@@ -29,10 +29,12 @@ salatModule.get = (location) => {
 
   return Promise.all([client.get(urlToday), client.get(urlTomorrow)]).then((salat) => {
     const todaySalat = manipulator.transformSalatData(salat[0].data);
+    const tomorrowSalat = manipulator.transformSalatData(salat[1].data);
     const nextSalat = manipulator.getNextSalat(salat[0].data, salat[1].data);
 
     return {
       todaySalat,
+      tomorrowSalat,
       nextSalat,
     };
   });

@@ -1,7 +1,7 @@
 import location from '@/api/location';
 import salat from '@/api/salat';
 
-function initializeState({ commit }) {
+function initializeState({ commit }): void {
   location.get()
     .then((response) => {
       commit('UPDATE_APPPHASE', 'locating');
@@ -19,9 +19,10 @@ function initializeState({ commit }) {
         timezone: response.timezone,
       });
     })
-    .then((salat) => {
-      commit('UPDATE_TODAYSALAT', salat.todaySalat);
-      commit('UPDATE_NEXTSALAT', salat.nextSalat);
+    .then((response) => {
+      commit('UPDATE_TODAYSALAT', response.todaySalat);
+      commit('UPDATE_TOMORROWSALAT', response.tomorrowSalat);
+      commit('UPDATE_NEXTSALAT', response.nextSalat);
 
       commit('UPDATE_APPPHASE', 'standby');
     })
@@ -37,11 +38,12 @@ function initializeState({ commit }) {
     });
 }
 
-function loadSalat({ commit, state }) {
+function loadSalat({ commit, state }): void {
   salat.get(state.location)
-    .then((salat) => {
-      commit('UPDATE_TODAYSALAT', salat.todaySalat);
-      commit('UPDATE_NEXTSALAT', salat.nextSalat);
+    .then((response) => {
+      commit('UPDATE_TODAYSALAT', response.todaySalat);
+      commit('UPDATE_TOMORROWSALAT', response.tomorrowSalat);
+      commit('UPDATE_NEXTSALAT', response.nextSalat);
     });
 }
 

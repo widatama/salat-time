@@ -25,6 +25,13 @@ export default createStore({
         time: '',
       },
     ],
+    tomorrowSalat: [
+      {
+        name: '',
+        date: '',
+        time: '',
+      },
+    ],
     nextSalat: {
       name: '',
       date: '',

@@ -21,7 +21,7 @@
   }
 }
 
-.salat-today {
+.salat-schedule {
   padding: 15px;
   flex-grow: 2;
 
@@ -34,6 +34,27 @@
     padding: 0 1.5%;
     flex-grow: 1;
   }
+}
+
+.salat-schedule__heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.salat-schedule__switcher {
+  font-size: 1.75em;
+  line-height: 1;
+}
+
+.salat-schedule__switch {
+  cursor: pointer;
+}
+
+.salat-schedule__switch--inactive {
+  color: var(--cl-bg-base);
+  cursor: default;
 }
 
 .salat-items {

@@ -2,6 +2,7 @@ const UPDATE_LOCATION = 'UPDATE_LOCATION';
 const UPDATE_APPPHASE = 'UPDATE_APPPHASE';
 const UPDATE_APPERROR = 'UPDATE_APPERROR';
 const UPDATE_TODAYSALAT = 'UPDATE_TODAYSALAT';
+const UPDATE_TOMORROWSALAT = 'UPDATE_TOMORROWSALAT';
 const UPDATE_NEXTSALAT = 'UPDATE_NEXTSALAT';
 
 const mutations = {
@@ -16,6 +17,9 @@ const mutations = {
   },
   [UPDATE_TODAYSALAT](state, newTodaySalat) {
     state.todaySalat = newTodaySalat;
+  },
+  [UPDATE_TOMORROWSALAT](state, newTomorrowoSalat) {
+    state.tomorrowSalat = newTomorrowoSalat;
   },
   [UPDATE_NEXTSALAT](state, newSalat) {
     state.nextSalat = newSalat;
