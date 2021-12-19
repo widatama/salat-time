@@ -1,12 +1,22 @@
-/* eslint-disable import/no-extraneous-dependencies */
-const karmaFirefoxLauncher = require('karma-firefox-launcher');
+/* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
+const isDocker = require('is-docker');
+const karmaChromeLauncher = require('karma-chrome-launcher');
 const karmaTap = require('karma-tap');
 const karmaTapPrettyReporter = require('karma-tap-pretty-reporter');
 const karmaWebpack = require('karma-webpack');
-/* eslint-enable import/no-extraneous-dependencies */
+/* eslint-enable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
+
+if (isDocker()) {
+  /* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
+  /* eslint-disable global-require, @typescript-eslint/no-var-requires */
+  process.env.CHROME_BIN = require('puppeteer').executablePath();
+  /* eslint-enable global-require, @typescript-eslint/no-var-requires */
+  /* eslint-enable import/no-extraneous-dependencies, import/no-unresolved */
+}
 
 // Use the exact same webpack config by requiring it
 // but make sure to delete the normal entry
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const webpackConf = require('./node_modules/@vue/cli-service/webpack.config.js');
 
 delete webpackConf.entry;
@@ -16,10 +26,16 @@ webpackConf.node = {
 };
 webpackConf.stats = 'none';
 
-module.exports = config => {
+module.exports = (config) => {
   config.set({
-    plugins: [karmaFirefoxLauncher, karmaTap, karmaTapPrettyReporter, karmaWebpack],
-    browsers: ['FirefoxHeadless'],
+    plugins: [karmaChromeLauncher, karmaTap, karmaTapPrettyReporter, karmaWebpack],
+    browsers: ['ChromeCustom'],
+    customLaunchers: {
+      ChromeCustom: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox', '--disable-setuid-sandbox'],
+      },
+    },
     frameworks: ['tap'],
     reporters: ['tap-pretty'],
     tapReporter: {
