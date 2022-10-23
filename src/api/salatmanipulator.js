@@ -3,7 +3,7 @@ import { isAfter, parse } from 'date-fns';
 const manipulator = {};
 
 function generateSalatArray(salatTiming, date) {
-  const result = Object.keys(salatTiming).map(key => {
+  const result = Object.keys(salatTiming).map((key) => {
     const time = salatTiming[key].split(':').join(' : ');
 
     return {
@@ -31,15 +31,17 @@ function cleanupSalatTiming(salatTiming) {
 
   Object.assign(result, salatTiming);
 
-  delete result.Sunrise;
-  delete result.Sunset;
+  delete result.Firstthird;
+  delete result.Lastthird;
   delete result.Imsak;
   delete result.Midnight;
+  delete result.Sunrise;
+  delete result.Sunset;
 
   return result;
 }
 
-manipulator.transformSalatData = salatData => {
+manipulator.transformSalatData = (salatData) => {
   const salatTiming = cleanupSalatTiming(salatData.timings);
 
   return generateSalatArray(salatTiming, salatData.date.readable);
