@@ -1,14 +1,16 @@
 import { addDays, format } from 'date-fns';
 import URL from 'url-parse';
 
+/* eslint-disable import/extensions, import/no-unresolved */
 import client from '@/modules/client';
+/* eslint-enable */
 
 import manipulator from './salatmanipulator';
 
 const salatModule = {};
 
 function generateUrl(location, timestamp) {
-  const salatTimeServiceUrl = 'https://api.aladhan.com/timings/';
+  const salatTimeServiceUrl = 'https://api.aladhan.com/v1/timings/';
   const urlObj = new URL(salatTimeServiceUrl, true);
   const { query } = urlObj;
 
