@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.7e51fba26391bfd626465b694affddcf.js"
+  "precache-manifest.cfa66023a33cc4f0cdd61dc747707383.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "salat-time"});
