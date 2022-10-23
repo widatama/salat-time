@@ -5,7 +5,7 @@ module.exports = {
     config.plugin('html').tap((args) => {
       /* eslint-disable no-param-reassign */
       args[0].title = title;
-      args[0].favicon = 'src/images/favicon.png';
+      args[0].favicon = 'public/favicon.png';
       /* eslint-enable */
 
       return args;
