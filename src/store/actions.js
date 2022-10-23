@@ -1,7 +1,9 @@
+/* eslint-disable import/extensions, import/no-unresolved */
 import location from '@/api/location';
 import salat from '@/api/salat';
+/* eslint-enable */
 
-function initializeState({ commit }): void {
+function initializeState({ commit }) {
   location.get()
     .then((response) => {
       commit('UPDATE_APPPHASE', 'locating');
@@ -38,7 +40,7 @@ function initializeState({ commit }): void {
     });
 }
 
-function loadSalat({ commit, state }): void {
+function loadSalat({ commit, state }) {
   salat.get(state.location)
     .then((response) => {
       commit('UPDATE_TODAYSALAT', response.todaySalat);

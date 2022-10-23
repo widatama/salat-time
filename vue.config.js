@@ -2,9 +2,11 @@ const title = 'Salat Time';
 
 module.exports = {
   chainWebpack(config) {
-    config.plugin('html').tap(args => {
+    config.plugin('html').tap((args) => {
+      /* eslint-disable no-param-reassign */
       args[0].title = title;
-      args[0].favicon = 'public/favicon.png';
+      args[0].favicon = 'src/images/favicon.png';
+      /* eslint-enable */
 
       return args;
     });
@@ -21,26 +23,26 @@ module.exports = {
       background_color: '#333333',
       icons: [
         {
-          src: "./favicon.png",
-          sizes: "192x192",
-          type: "image/png"
+          src: './favicon.png',
+          sizes: '192x192',
+          type: 'image/png',
         },
         {
-          src: "./favicon.png",
-          sizes: "512x512",
-          type: "image/png"
+          src: './favicon.png',
+          sizes: '512x512',
+          type: 'image/png',
         },
         {
-          src: "./favicon.png",
-          sizes: "192x192",
-          type: "image/png",
-          purpose: "maskable"
+          src: './favicon.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'maskable',
         },
         {
-          src: "./favicon.png",
-          sizes: "512x512",
-          type: "image/png",
-          purpose: "maskable"
+          src: './favicon.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable',
         },
       ],
     },
