@@ -16,7 +16,10 @@
     "url": "https://github.com/widatama/salat-time.git"
   },
   "dependencies": {
+    "date-fns": "^2.29.3",
+    "jstz": "^2.1.1",
     "normalize.css": "^8.0.1",
+    "url-parse": "^1.5.10",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "vuex": "^4.1.0"
@@ -24,6 +27,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/node": "^18.11.12",
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-airbnb-with-typescript": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",

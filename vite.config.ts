@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import vue from '@vitejs/plugin-vue';
 import { createHtmlPlugin } from 'vite-plugin-html';
 
@@ -27,7 +28,7 @@ export default defineConfig({
     },
   },
   publicDir,
-  plugins: [vue(), createHtmlPlugin({ inject })],
+  plugins: [vue(), basicSsl(), createHtmlPlugin({ inject })],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
