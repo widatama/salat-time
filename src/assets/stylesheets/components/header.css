@@ -1,0 +1,29 @@
+.app-header {
+
+  width: 100%;
+  padding: 10px 15px;
+
+  font-size: 0.75em;
+  line-height: 2;
+
+  @media (--bp-medium) {
+    padding: 1.5% 2%;
+    font-size: 1.25em;
+    line-height: 1.5;
+  }
+
+  @media (--bp-large) {
+    padding: 1% 1.5%;
+    font-size: 1.5em;
+    line-height: 1.5;
+  }
+}
+
+.app__title {
+  float: left;
+  padding: 0;
+  margin: 0;
+  font-family: var(--ft-sans-serif);
+  font-size: 1em;
+  font-weight: 400;
+}

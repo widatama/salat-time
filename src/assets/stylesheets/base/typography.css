@@ -1,0 +1,17 @@
+
+/*
+
+  Base
+*/
+
+/* stylelint-disable selector-max-type */
+body {
+  font-family: var(--ft-sans-serif);
+  font-size: 125%;
+  font-size: 20px;
+  line-height: 1.5;
+
+  text-size-adjust: 100%;
+  font-feature-settings: "liga" 1;
+}
+/* stylelint-enable selector-max-type */

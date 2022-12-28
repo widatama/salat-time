@@ -1,11 +1,19 @@
+<template lang="pug">
+header.app-header
+  h1.app__title
+    strong Salat
+    | Time
+section.app-content
+  RouterView
+</template>
+
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterView } from 'vue-router';
 import { useStore } from 'vuex';
 
 export default defineComponent({
   components: {
-    RouterLink,
     RouterView,
   },
   setup() {
@@ -17,15 +25,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<template lang="pug">
-header
-  nav
-    RouterLink(to="/") Home
-    | &ensp;
-    RouterLink(to="/about") About
-
-br
-div {{ state.content }}
-RouterView
-</template>

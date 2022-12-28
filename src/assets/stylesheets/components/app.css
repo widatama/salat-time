@@ -1,0 +1,28 @@
+.app {
+  display: flex;
+
+  min-height: 100%;
+  flex-direction: column;
+
+  justify-content: flex-start;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+
+  flex-grow: 2;
+  align-items: inherit;
+
+  @media (--bp-medium) {
+    flex-direction: row;
+
+    align-items: center;
+  }
+
+  @media (--bp-large) {
+    flex-direction: row;
+
+    align-items: center;
+  }
+}
