@@ -1,6 +1,5 @@
 {
   "name": "salat-time",
-  "version": "0.0.0",
   "scripts": {
     "start": "vite",
     "build": "run-p type-check build-only",
