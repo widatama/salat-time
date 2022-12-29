@@ -27,6 +27,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/node": "^18.11.12",
+    "@types/url-parse": "^1.4.8",
     "@vitejs/plugin-basic-ssl": "^1.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-airbnb-with-typescript": "^7.0.0",

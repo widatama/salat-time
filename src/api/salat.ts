@@ -1,45 +1,43 @@
 import { addDays, format } from 'date-fns';
 import URL from 'url-parse';
 
-/* eslint-disable import/extensions, import/no-unresolved */
 import client from '@/modules/client';
-/* eslint-enable */
-
+import type { Location } from './locationmanipulator';
 import manipulator from './salatmanipulator';
 
-const salatModule = {};
-
-function generateUrl(location, timestamp) {
+function generateUrl(location: Location, timestamp: string) {
   const salatTimeServiceUrl = 'https://api.aladhan.com/v1/timings/';
   const urlObj = new URL(salatTimeServiceUrl, true);
-  const { query } = urlObj;
+  const { pathname, query } = urlObj;
 
-  urlObj.pathname = [urlObj.pathname, timestamp].join('');
   query.latitude = location.latitude.toString();
   query.longitude = location.longitude.toString();
   query.timezonestring = location.timezone;
   query.method = '3';
 
+  urlObj.set('pathname', [pathname, timestamp].join(''));
   urlObj.set('query', query);
 
   return urlObj.href;
 }
 
-salatModule.get = (location) => {
+async function get(location: Location) {
   const urlToday = generateUrl(location, format(new Date(), 't'));
   const urlTomorrow = generateUrl(location, format(addDays(new Date(), 1), 't'));
 
-  return Promise.all([client.get(urlToday), client.get(urlTomorrow)]).then((salat) => {
-    const todaySalat = manipulator.transformSalatData(salat[0].data);
-    const tomorrowSalat = manipulator.transformSalatData(salat[1].data);
-    const nextSalat = manipulator.getNextSalat(salat[0].data, salat[1].data);
+  const salatResponse: any[] = await Promise.all([client.get(urlToday), client.get(urlTomorrow)]);
 
-    return {
-      todaySalat,
-      tomorrowSalat,
-      nextSalat,
-    };
-  });
+  const todaySalat = manipulator.transformSalatData(salatResponse[0].data);
+  const tomorrowSalat = manipulator.transformSalatData(salatResponse[1].data);
+  const nextSalat = manipulator.getNextSalat(salatResponse[0].data, salatResponse[1].data);
+
+  return {
+    todaySalat,
+    tomorrowSalat,
+    nextSalat,
+  };
+}
+
+export default {
+  get,
 };
-
-export default salatModule;

@@ -1,53 +1,72 @@
-import location from '@/api/location';
-import salat from '@/api/salat';
+import type { ActionContext } from 'vuex';
 
-function initializeState({ commit }) {
-  location.get()
-    .then((response) => {
-      commit('UPDATE_APPPHASE', 'locating');
+import locationSvc from '@/api/location';
+import salatSvc from '@/api/salat';
 
-      commit('UPDATE_LOCATION', response);
+import type { State } from './index';
 
-      return response;
-    })
-    .then((response) => {
-      commit('UPDATE_APPPHASE', 'loading salat');
+type Context = ActionContext<State, unknown>;
 
-      return salat.get({
-        latitude: response.latitude,
-        longitude: response.longitude,
-        timezone: response.timezone,
-      });
-    })
-    .then((response) => {
-      commit('UPDATE_TODAYSALAT', response.todaySalat);
-      commit('UPDATE_TOMORROWSALAT', response.tomorrowSalat);
-      commit('UPDATE_NEXTSALAT', response.nextSalat);
+async function initializeState({ commit }: Context) {
+  try {
+    commit('UPDATE_APPPHASE', 'locating');
 
-      commit('UPDATE_APPPHASE', 'standby');
-    })
-    .catch((error) => {
+    const location = await locationSvc.get();
+
+    commit('UPDATE_LOCATION', location);
+    commit('UPDATE_APPPHASE', 'loading salat');
+
+    const salatResponses = await salatSvc.get(location);
+
+    commit('UPDATE_TODAYSALAT', salatResponses.todaySalat);
+    commit('UPDATE_TOMORROWSALAT', salatResponses.tomorrowSalat);
+    commit('UPDATE_NEXTSALAT', salatResponses.nextSalat);
+    commit('UPDATE_APPPHASE', 'standby');
+  } catch (error) {
+    if (error instanceof Error) {
       if (error.message === 'Failed to fetch') {
         const err = new Error('Network error, please check your connection and disable adblock');
 
         commit('UPDATE_APPPHASE', 'network error');
         commit('UPDATE_APPERROR', err);
+      } else {
+        commit('UPDATE_APPPHASE', 'error');
+        commit('UPDATE_APPERROR', error);
       }
-    });
+    } else {
+      commit('UPDATE_APPPHASE', 'error');
+      commit('UPDATE_APPERROR', new Error(String(error)));
+    }
+  }
 }
 
-function loadSalat({ commit, state }) {
-  salat.get(state.location)
-    .then((response) => {
-      commit('UPDATE_TODAYSALAT', response.todaySalat);
-      commit('UPDATE_TOMORROWSALAT', response.tomorrowSalat);
-      commit('UPDATE_NEXTSALAT', response.nextSalat);
-    });
+async function loadSalat({ commit, state }: Context) {
+  try {
+    const salatResponses = await salatSvc.get(state.location);
+    commit('UPDATE_TODAYSALAT', salatResponses.todaySalat);
+    commit('UPDATE_TOMORROWSALAT', salatResponses.tomorrowSalat);
+    commit('UPDATE_NEXTSALAT', salatResponses.nextSalat);
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.message === 'Failed to fetch') {
+        const msg = 'Network error when loading salat, '
+          + 'please check your connection and disable adblock';
+        const err = new Error(msg);
+
+        commit('UPDATE_APPPHASE', 'network error');
+        commit('UPDATE_APPERROR', err);
+      } else {
+        commit('UPDATE_APPPHASE', 'error');
+        commit('UPDATE_APPERROR', error);
+      }
+    } else {
+      commit('UPDATE_APPPHASE', 'error');
+      commit('UPDATE_APPERROR', new Error(String(error)));
+    }
+  }
 }
 
-const actions = {
+export default {
   initializeState,
   loadSalat,
 };
-
-export default actions;

@@ -6,44 +6,45 @@ import client from '@/modules/client';
 
 import manipulator from './locationmanipulator';
 
-const location = {};
+type Coordinate = {
+  latitude: number;
+  longitude: number;
+};
 
-function generateGeoIPUrl() {
-  return 'https://json.geoiplookup.io/';
-}
-
-function generateReverseGeolocationUrl(coordinates) {
+function generateReverseGeolocationUrl(coordinate: Coordinate) {
   const geolocationServiceUrl = 'https://nominatim.openstreetmap.org/reverse?format=json&zoom=15&addressdetails=1';
   const urlObj = new URL(geolocationServiceUrl, true);
   const { query } = urlObj;
 
-  query.lat = coordinates.latitude;
-  query.lon = coordinates.longitude;
+  query.lat = coordinate.latitude.toString();
+  query.lon = coordinate.longitude.toString();
 
   urlObj.set('query', query);
 
   return urlObj.href;
 }
 
-// Try to use reverse geolocation first
-location.get = () => geo.locate().then(
-  (position) => {
+async function get() {
+  try {
+    // Try to use reverse geolocation first
+    const position = await geo.locate();
+
     const url = generateReverseGeolocationUrl(position.coords);
-    return client.get(url).then((response) => {
-      const result = manipulator.transformReverseGeolocationResponse(response);
-      const timezone = jstz.determine();
 
-      result.timezone = timezone.name();
+    const response = await client.get(url);
 
-      return result;
-    });
-  },
-  () => {
+    const location = manipulator.transformReverseGeolocationResponse(response);
+    const timezone = jstz.determine();
+    location.timezone = timezone.name();
+    return location;
+  } catch (_) {
     // Use geoip if geolocation is not working, e.g. on Chromium
-    const url = generateGeoIPUrl();
+    const geoIPUrl = 'https://json.geoiplookup.io/';
+    const response = await client.get(geoIPUrl);
+    return manipulator.transformIPLocationResponse(response);
+  }
+}
 
-    return client.get(url).then((response) => manipulator.transformIPLocationResponse(response));
-  },
-);
-
-export default location;
+export default {
+  get,
+};

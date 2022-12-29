@@ -1,7 +1,3 @@
-interface Client {
-  get: (url: string, options: RequestInit) => Promise<Response>;
-}
-
 function checkStatus(response: Response): Response | never {
   if ((response.status >= 200 && response.status < 300) || response.ok) {
     return response;
@@ -12,7 +8,7 @@ function checkStatus(response: Response): Response | never {
   throw error;
 }
 
-function get(url: string, options: RequestInit): Promise<Response> {
+function get(url: string, options?: RequestInit): Promise<Response> {
   return fetch(url, options)
     .then(checkStatus)
     .then((response) => response.json())
@@ -21,8 +17,6 @@ function get(url: string, options: RequestInit): Promise<Response> {
     });
 }
 
-const client: Client = {
+export default {
   get,
 };
-
-export default client;

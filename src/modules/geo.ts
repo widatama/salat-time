@@ -1,7 +1,3 @@
-interface Geo {
-  locate: () => Promise<GeolocationPosition>;
-}
-
 function locate(): Promise<GeolocationPosition> {
   return new Promise((resolve: PositionCallback, reject) => {
     if ('geolocation' in navigator) {
@@ -14,8 +10,6 @@ function locate(): Promise<GeolocationPosition> {
   });
 }
 
-const geo: Geo = {
+export default {
   locate,
 };
-
-export default geo;

@@ -1,8 +1,13 @@
 import { isAfter, parse } from 'date-fns';
 
-const manipulator = {};
+type SalatTiming = { [key: string]: string };
+export type Salat = {
+  name: string;
+  date: string;
+  time: string;
+};
 
-function generateSalatArray(salatTiming, date) {
+function generateSalatArray(salatTiming: SalatTiming, date: string): Salat[] {
   const result = Object.keys(salatTiming).map((key) => {
     const time = salatTiming[key].split(':').join(' : ');
 
@@ -16,7 +21,7 @@ function generateSalatArray(salatTiming, date) {
   return result;
 }
 
-function isNextSalat(salat) {
+function isNextSalat(salat: Salat) {
   const salatTime = parse(`${salat.date} ${salat.time}`, 'd MMM yyyy HH : mm', new Date());
 
   if (isAfter(salatTime, new Date())) {
@@ -26,32 +31,33 @@ function isNextSalat(salat) {
   return false;
 }
 
-function cleanupSalatTiming(salatTiming) {
-  const result = {};
+function cleanupSalatTiming(salatTiming: SalatTiming) {
+  const keep = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+  const result: SalatTiming = {};
 
-  Object.assign(result, salatTiming);
+  return Object.keys(salatTiming).reduce((acc, key) => {
+    if (keep.includes(key)) {
+      acc[key] = salatTiming[key];
+    }
 
-  delete result.Firstthird;
-  delete result.Lastthird;
-  delete result.Imsak;
-  delete result.Midnight;
-  delete result.Sunrise;
-  delete result.Sunset;
-
-  return result;
+    return acc;
+  }, result);
 }
 
-manipulator.transformSalatData = (salatData) => {
+function transformSalatData(salatData: any): Salat[] {
   const salatTiming = cleanupSalatTiming(salatData.timings);
 
   return generateSalatArray(salatTiming, salatData.date.readable);
+}
+
+function getNextSalat(salatDataToday: any, salatDataTomorrow: any): Salat {
+  const salatArrayToday = transformSalatData(salatDataToday);
+  const salatArrayTomorrow = transformSalatData(salatDataTomorrow);
+
+  return salatArrayToday.concat(salatArrayTomorrow).find(isNextSalat) as Salat;
+}
+
+export default {
+  transformSalatData,
+  getNextSalat,
 };
-
-manipulator.getNextSalat = (salatDataToday, salatDataTomorrow) => {
-  const salatArrayToday = manipulator.transformSalatData(salatDataToday);
-  const salatArrayTomorrow = manipulator.transformSalatData(salatDataTomorrow);
-
-  return salatArrayToday.concat(salatArrayTomorrow).find(isNextSalat);
-};
-
-export default manipulator;
