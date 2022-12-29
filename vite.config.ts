@@ -22,6 +22,7 @@ const inject = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/salat-time/',
   build: {
     emptyOutDir: true,
     outDir,
