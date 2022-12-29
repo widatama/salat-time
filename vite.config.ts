@@ -1,3 +1,4 @@
+/// <reference types="vitest"/>
 import { resolve } from 'path';
 import { fileURLToPath, URL } from 'node:url';
 
@@ -80,5 +81,10 @@ export default defineConfig({
   root: rootDir,
   server: {
     port: 4000,
+  },
+  test: {
+    // Because vite root is modified, need to point this to test directory
+    include: ['../test/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}'],
+    reporters: 'dot',
   },
 });

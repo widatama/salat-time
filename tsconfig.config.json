@@ -4,6 +4,7 @@
     "cypress.config.*",
     "playwright.config.*",
     "postcss.config.*",
+    "tailwind.config.*",
     "vite.config.*",
     "vitest.config.*"
   ],
