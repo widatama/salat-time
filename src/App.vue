@@ -3,17 +3,21 @@ header.app-header
   h1.app__title
     strong Salat
     | Time
-  current-time
+  CurrentTime
 section.app-content
-  router-view
+  RouterView
 </template>
 
 <script lang="ts">
-  import CurrentTime from '@/components/CurrentTime.vue';
+import { defineComponent } from 'vue';
+import { RouterView } from 'vue-router';
 
-  export default {
-    components: {
-      'current-time': CurrentTime,
-    },
-  };
+import CurrentTime from '@/components/CurrentTime.vue';
+
+export default defineComponent({
+  components: {
+    CurrentTime,
+    RouterView,
+  },
+});
 </script>

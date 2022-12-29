@@ -7,27 +7,32 @@
 </template>
 
 <script lang="ts">
-  import { format } from 'date-fns';
-  import { computed, defineComponent, onMounted, ref } from 'vue';
+import { format } from 'date-fns';
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  ref,
+} from 'vue';
 
-  const INTERVAL = 1000;
+const REFRESHINTERVAL = 1000; // One second
 
-  export default defineComponent({
-    name: 'current-time',
-    setup() {
-      const dateObj = ref(new Date());
+export default defineComponent({
+  name: 'current-time',
+  setup() {
+    const dateObj = ref(new Date());
 
-      onMounted(() => {
-        setInterval(() => {
-          dateObj.value = new Date();
-        }, INTERVAL);
-      });
+    onMounted(() => {
+      setInterval(() => {
+        dateObj.value = new Date();
+      }, REFRESHINTERVAL);
+    });
 
-      return {
-        dateObj,
-        hour: computed(() => format(dateObj.value, 'HH')),
-        minute: computed(() => format(dateObj.value, 'mm')),
-      };
-    },
-  })
+    return {
+      dateObj,
+      hour: computed(() => format(dateObj.value, 'HH')),
+      minute: computed(() => format(dateObj.value, 'mm')),
+    };
+  },
+});
 </script>

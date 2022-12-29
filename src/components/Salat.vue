@@ -7,33 +7,33 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
-  import TimeDisplay from './TimeDisplay.vue';
+import TimeDisplay from './TimeDisplay.vue';
 
-  export default defineComponent({
-    components: {
-      'time-display': TimeDisplay,
+export default defineComponent({
+  components: {
+    'time-display': TimeDisplay,
+  },
+  props: {
+    salat: {
+      type: Object,
     },
-    props: {
-      salat: {
-        type: Object,
+    dispType: {
+      type: String,
+    },
+  },
+  setup(props) {
+    return {
+      salat: props.salat,
+      className(prefix: string) {
+        if (props.dispType) {
+          return prefix + props.dispType;
+        }
+
+        return '';
       },
-      dispType: {
-        type: String,
-      },
-    },
-    setup(props) {
-      return {
-        salat: props.salat,
-        className(prefix: string) {
-          if (props.dispType) {
-            return prefix + props.dispType;
-          }
-
-          return '';
-        },
-      };
-    },
-  })
+    };
+  },
+});
 </script>

@@ -1,67 +1,79 @@
-import tape from 'tape';
+import { describe, expect, test } from 'vitest';
+
 import locationManipulator from '@/api/locationmanipulator';
 
-tape('Location data manipulator', t => {
-  t.test('Transform geoiplookup response', assert => {
-    // This is the location data sample fetched from geoapilookup
-    const rawLocation = {
-      ip: '202.62.16.22',
-      country_code: 'ID',
-      country_name: 'Indonesia',
-      region_code: 'JK',
-      region_name: 'Jakarta',
+describe('Transform geo ip lookup response', () => {
+  // This is location data sample fetched from geo ip lookup
+  const rawLocation = {
+    ip: '202.62.16.22',
+    country_code: 'ID',
+    country_name: 'Indonesia',
+    region_code: 'JK',
+    region_name: 'Jakarta',
+    city: 'Jakarta',
+    zip_code: '',
+    timezone_name: 'Asia/Jakarta',
+    latitude: -6.1744,
+    longitude: 106.8294,
+    metro_code: 0,
+  };
+
+  // Transform raw location data to get only what is needed in the correct format
+  const location = locationManipulator.transformIPLocationResponse(rawLocation);
+
+  test('Country is correct', () => {
+    expect(location.country).toBe('Indonesia');
+  });
+
+  test('City is correct', () => {
+    expect(location.city).toBe('Jakarta');
+  });
+
+  test('Timezone is correct', () => {
+    expect(location.timezone).toBe('Asia/Jakarta');
+  });
+
+  test('Latitude is correct', () => {
+    expect(location.latitude).toBe(-6.1744);
+  });
+
+  test('Longitude is correct', () => {
+    expect(location.longitude).toBe(106.8294);
+  });
+});
+
+describe('Transform reverse geolocation response', () => {
+  // This is reverse geolocation response sample
+  const response = {
+    address: {
+      country: 'Indonesia',
       city: 'Jakarta',
-      zip_code: '',
-      timezone_name: 'Asia/Jakarta',
-      latitude: -6.1744,
-      longitude: 106.8294,
-      metro_code: 0,
-    };
+    },
+    lat: -6.1744,
+    lon: 106.8294,
+  };
 
-    // Transform the raw location data to get only what is needed with the correct format
-    const location = locationManipulator.transformIPLocationResponse(rawLocation);
+  // Transform response sample to get only what is needed in the correct format
+  const location = locationManipulator.transformReverseGeolocationResponse(response);
 
-    assert.plan(10);
-
-    // Test the result location
-    assert.ok(location.country, 'Country exists');
-    assert.equal(typeof location.country, 'string', 'Country is a string');
-    assert.ok(location.country, 'City exists');
-    assert.equal(typeof location.city, 'string', 'City is a string');
-    assert.ok(location.country, 'Time zone exists');
-    assert.equal(typeof location.timezone, 'string', 'Time zone is a string');
-    assert.ok(location.latitude, 'Latitude exists');
-    assert.equal(typeof location.latitude, 'number', 'Latitude is a number');
-    assert.ok(location.longitude, 'Longitude exists');
-    assert.equal(typeof location.longitude, 'number', 'Longitude is a number');
+  test('Country is correct', () => {
+    expect(location.country).toBe('Indonesia');
   });
 
-  t.test('Transform nominatim response', assert => {
-    // This is the reverse geolocation data sample fetched from nominatim
-    const response = {
-      address: {
-        country: 'Indonesia',
-        city: 'Jakarta',
-      },
-      lat: -6.1744,
-      lon: 106.8294,
-    };
-
-    // Transform the response data to get only what is needed with the correct format
-    const location = locationManipulator.transformReverseGeolocationResponse(response);
-
-    assert.plan(8);
-
-    // Test the result location
-    assert.ok(location.country, 'Country exists');
-    assert.equal(typeof location.country, 'string', 'Country is a string');
-    assert.ok(location.country, 'City exists');
-    assert.equal(typeof location.city, 'string', 'City is a string');
-    assert.ok(location.latitude, 'Latitude exists');
-    assert.equal(typeof location.latitude, 'number', 'Latitude is a number');
-    assert.ok(location.longitude, 'Longitude exists');
-    assert.equal(typeof location.longitude, 'number', 'Longitude is a number');
+  test('City is correct', () => {
+    expect(location.city).toBe('Jakarta');
   });
 
-  t.end();
+  test('Timezone is correct', () => {
+    // Reverse geolocation response does not contain timezone
+    expect(location.timezone).toBe('');
+  });
+
+  test('Latitude is correct', () => {
+    expect(location.latitude).toBe(-6.1744);
+  });
+
+  test('Longitude is correct', () => {
+    expect(location.longitude).toBe(106.8294);
+  });
 });

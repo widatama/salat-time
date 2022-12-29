@@ -4,11 +4,11 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
-  export default defineComponent({
-    props: [
-      'time',
-    ],
-  })
+export default defineComponent({
+  props: [
+    'time',
+  ],
+});
 </script>

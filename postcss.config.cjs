@@ -1,3 +1,4 @@
+const autoprefixer = require('autoprefixer');
 const postcssCustomMedia = require('postcss-custom-media');
 const postcssImport = require('postcss-import');
 const postcssNested = require('postcss-nested');
@@ -11,5 +12,6 @@ module.exports = {
     postcssPresetEnv,
     postcssCustomMedia,
     postcssNested,
+    autoprefixer,
   ],
 };

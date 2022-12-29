@@ -29,7 +29,7 @@ import { add } from 'date-fns';
 import {
   computed, defineComponent, onMounted, ref,
 } from 'vue';
-import { mapGetters, useStore } from 'vuex';
+import { useStore } from 'vuex';
 
 import DayDisplay from '@/components/DayDisplay.vue';
 import LoadingCue from '@/components/LoadingCue.vue';
@@ -38,10 +38,10 @@ import Notification from '@/components/Notification.vue';
 import Salat from '@/components/Salat.vue';
 import SalatList from '@/components/SalatList.vue';
 
-const APPCYCLEINTERVAL = 600000; // Ten minutes
+const APPREFRESHINTERVAL = 600000; // Ten minutes
 
 export default defineComponent({
-  name: 'day',
+  name: 'DayView',
   components: {
     DayDisplay,
     'current-location': CurrentLocation,
@@ -68,7 +68,7 @@ export default defineComponent({
       store.dispatch('initializeState');
       setInterval(() => {
         store.dispatch('loadSalat');
-      }, APPCYCLEINTERVAL);
+      }, APPREFRESHINTERVAL);
     });
 
     function selectDay(inp: string) {

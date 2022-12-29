@@ -4,37 +4,37 @@
   div {{country}}
 </template>
 
-<script>
-  import { computed, defineComponent } from 'vue';
+<script lang="ts">
+import { computed, defineComponent } from 'vue';
 
-  export default defineComponent({
-    props: {
-      location: {
-        type: Object,
-        required: true,
-      },
+export default defineComponent({
+  props: {
+    location: {
+      type: Object,
+      required: true,
     },
-    setup(props) {
-      const area = computed(() => {
-        const result = [];
+  },
+  setup(props) {
+    const area = computed(() => {
+      const result = [];
 
-        if (props.location.city) {
-          result.push(props.location.city);
-        } else if (props.location.village) {
-          result.push(props.location.village);
-        }
+      if (props.location.city) {
+        result.push(props.location.city);
+      } else if (props.location.village) {
+        result.push(props.location.village);
+      }
 
-        if (props.location.state) {
-          result.push(props.location.state);
-        }
+      if (props.location.state) {
+        result.push(props.location.state);
+      }
 
-        return result.join(', ');
-      });
+      return result.join(', ');
+    });
 
-      return {
-        area,
-        country: computed(() => props.location.country),
-      };
-    },
-  })
+    return {
+      area,
+      country: computed(() => props.location.country),
+    };
+  },
+});
 </script>
