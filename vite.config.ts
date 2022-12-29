@@ -5,14 +5,17 @@ import { defineConfig } from 'vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import vue from '@vitejs/plugin-vue';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import { VitePWA } from 'vite-plugin-pwa';
 
 const outDir = resolve(__dirname, 'dist');
 const rootDir = resolve(__dirname, 'src');
 const publicDir = resolve(__dirname, 'public');
 
+const appTitle = 'Salat Time';
+
 const inject = {
   data: {
-    appTitle: 'Salat Time',
+    appTitle,
   },
 };
 
@@ -28,7 +31,47 @@ export default defineConfig({
     },
   },
   publicDir,
-  plugins: [vue(), basicSsl(), createHtmlPlugin({ inject })],
+  plugins: [
+    vue(),
+    basicSsl(),
+    createHtmlPlugin({ inject }),
+    VitePWA({
+      devOptions: { enabled: true },
+      injectRegister: 'inline',
+      registerType: 'autoUpdate',
+      manifest: {
+        name: appTitle,
+        short_name: appTitle,
+        orientation: 'portrait',
+        background_color: '#333333',
+        theme_color: '#ffffff',
+        icons: [
+          {
+            src: '/favicon.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/favicon.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: '/favicon.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+          {
+            src: '/favicon.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
