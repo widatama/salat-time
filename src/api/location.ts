@@ -12,10 +12,13 @@ type Coordinate = {
 };
 
 function generateReverseGeolocationUrl(coordinate: Coordinate) {
-  const geolocationServiceUrl = 'https://nominatim.openstreetmap.org/reverse?format=json&zoom=15&addressdetails=1';
-  const urlObj = new URL(geolocationServiceUrl, true);
+  // const geolocationServiceUrl = 'https://nominatim.openstreetmap.org/reverse?format=json&zoom=15&addressdetails=1';
+  const urlObj = new URL(import.meta.env.VITE_GEOLOCATION_API_URL, true);
   const { query } = urlObj;
 
+  query.format = 'json';
+  query.zoom = 15;
+  query.addressdetails = 1;
   query.lat = coordinate.latitude.toString();
   query.lon = coordinate.longitude.toString();
 
@@ -39,8 +42,7 @@ async function get() {
     return location;
   } catch (_) {
     // Use geoip if geolocation is not working, e.g. on Chromium
-    const geoIPUrl = 'https://json.geoiplookup.io/';
-    const response = await client.get(geoIPUrl);
+    const response = await client.get(import.meta.env.VITE_GEO_IP_API_URL);
     return manipulator.transformIPLocationResponse(response);
   }
 }

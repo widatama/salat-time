@@ -6,8 +6,7 @@ import type { Location } from './locationmanipulator';
 import manipulator from './salatmanipulator';
 
 function generateUrl(location: Location, timestamp: string) {
-  const salatTimeServiceUrl = 'https://api.aladhan.com/v1/timings/';
-  const urlObj = new URL(salatTimeServiceUrl, true);
+  const urlObj = new URL(import.meta.env.VITE_SALAT_API_URL, true);
   const { pathname, query } = urlObj;
 
   query.latitude = location.latitude.toString();
@@ -15,7 +14,7 @@ function generateUrl(location: Location, timestamp: string) {
   query.timezonestring = location.timezone;
   query.method = '3';
 
-  urlObj.set('pathname', [pathname, timestamp].join(''));
+  urlObj.set('pathname', [pathname, timestamp].join('/'));
   urlObj.set('query', query);
 
   return urlObj.href;
