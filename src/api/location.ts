@@ -12,13 +12,13 @@ type Coordinate = {
 };
 
 function generateReverseGeolocationUrl(coordinate: Coordinate) {
-  // const geolocationServiceUrl = 'https://nominatim.openstreetmap.org/reverse?format=json&zoom=15&addressdetails=1';
+  // https://nominatim.openstreetmap.org/reverse?format=json&zoom=15&addressdetails=1;
   const urlObj = new URL(import.meta.env.VITE_GEOLOCATION_API_URL, true);
   const { query } = urlObj;
 
   query.format = 'json';
-  query.zoom = 15;
-  query.addressdetails = 1;
+  query.zoom = '15';
+  query.addressdetails = '1';
   query.lat = coordinate.latitude.toString();
   query.lon = coordinate.longitude.toString();
 
