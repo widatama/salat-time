@@ -59,11 +59,11 @@
 
 .salat-schedule__switch {
   cursor: pointer;
-}
-
-.salat-schedule__switch--inactive {
-  color: var(--cl-bg-base);
-  cursor: default;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  color: var(--cl-text);
 }
 
 .salat-items {

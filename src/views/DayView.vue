@@ -14,14 +14,8 @@ Transition(name="fade")
             DayDisplay(:dateObj="today", v-if="selectedDay === 'today'")
             DayDisplay(:dateObj="tomorrow", v-else)
           div.salat-schedule__switcher
-            span.salat-schedule__switch(
-              v-if="selectedDay !== 'today'"
-              @click="selectDay('today')"
-            ) &larr;
-            span.salat-schedule__switch(
-              v-if="selectedDay === 'today'"
-              @click="selectDay('tomorrow')"
-            ) &rarr;
+            button.salat-schedule__switch(@click="toggleDay")
+              | {{ selectedDay !== 'today' ? '&larr;' : '&rarr;' }}
         Transition(:name="slideTransitionName" mode="out-in")
           salat-list(:salat-list="todaySalat", v-if="selectedDay === 'today'")
           salat-list(:salat-list="tomorrowSalat", v-else)
@@ -85,6 +79,14 @@ export default defineComponent({
       selectedDay.value = inp;
     }
 
+    function toggleDay() {
+      if (selectedDay.value === 'today') {
+        selectedDay.value = 'tomorrow';
+      } else {
+        selectedDay.value = 'today';
+      }
+    }
+
     return {
       selectedDay,
       dateToDisplay,
@@ -100,6 +102,7 @@ export default defineComponent({
       tomorrow,
       tomorrowSalat: computed(() => store.getters.tomorrowSalat),
       selectDay,
+      toggleDay,
     };
   },
 });
