@@ -13,15 +13,16 @@ Transition(name="fade")
           DayDisplay(:dateObj="dateToDisplay")
           div.salat-schedule__switcher
             span.salat-schedule__switch(
-              :class="{'salat-schedule__switch--inactive': selectedDay === 'today'}"
+              v-if="selectedDay !== 'today'"
               @click="selectDay('today')"
             ) &larr;
-            | &emsp;
             span.salat-schedule__switch(
-              :class="{'salat-schedule__switch--inactive': selectedDay !== 'today'}"
+              v-if="selectedDay === 'today'"
               @click="selectDay('tomorrow')"
             ) &rarr;
-        salat-list(:salat-list="selectedDay === 'today' ? todaySalat : tomorrowSalat")
+        Transition(:name="slideTransitionName" mode="out-in")
+          salat-list(:salat-list="todaySalat", v-if="selectedDay === 'today'")
+          salat-list(:salat-list="tomorrowSalat", v-else)
 </template>
 
 <script lang="ts">
@@ -53,6 +54,13 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const selectedDay = ref('today');
+    const slideTransitionName = computed(() => {
+      if (selectedDay.value === 'today') {
+        return 'slide-l';
+      }
+
+      return 'slide-r';
+    });
     const today = computed(() => new Date());
     const tomorrow = computed(() => add(new Date(), { days: 1 }));
 
@@ -84,6 +92,7 @@ export default defineComponent({
       isLoading: computed(() => store.getters.isLoading),
       location: computed(() => store.getters.location),
       nextSalat: computed(() => store.getters.nextSalat),
+      slideTransitionName,
       todaySalat: computed(() => store.getters.todaySalat),
       tomorrowSalat: computed(() => store.getters.tomorrowSalat),
       selectDay,

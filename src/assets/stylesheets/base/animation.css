@@ -33,12 +33,45 @@
   Vue transitions
 */
 
-.fade-enter-active,
+.fade-enter-active {
+  transition: opacity 0.4s ease;
+}
+
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.1s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-l-enter-active,
+.slide-r-enter-active {
+  transition: all 0.5s ease;
+}
+
+.slide-l-leave-active,
+.slide-r-leave-active {
+  transition: all 0.2s ease;
+}
+
+.slide-r-enter-from {
+  transform: translateX(-10px);
+  opacity: 0;
+}
+
+.slide-r-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.slide-l-enter-from {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.slide-l-leave-to {
+  transform: translateX(-10px);
   opacity: 0;
 }
