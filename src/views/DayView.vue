@@ -1,27 +1,27 @@
 <template lang="pug">
 template(v-if="isLoading")
   loading-cue( :loading-text="appPhase")
-template(v-else)
-  template(v-if="isError")
-    notification( :notification-message="appError")
-  template(v-else)
-    .salat-next
-      salat( :salat="nextSalat", disp-type="next")
-      current-location( :location="location")
-    .salat-schedule
-      .salat-schedule__heading
-        DayDisplay(:dateObj="dateToDisplay")
-        div.salat-schedule__switcher
-          span.salat-schedule__switch(
-            :class="{'salat-schedule__switch--inactive': selectedDay === 'today'}"
-            @click="selectDay('today')"
-          ) &larr;
-          | &emsp;
-          span.salat-schedule__switch(
-            :class="{'salat-schedule__switch--inactive': selectedDay !== 'today'}"
-            @click="selectDay('tomorrow')"
-          ) &rarr;
-      salat-list(:salat-list="selectedDay === 'today' ? todaySalat : tomorrowSalat")
+Transition(name="fade")
+  template(v-if="!isLoading")
+    notification( :notification-message="appError", v-if="isError")
+    .salat-layout(v-else)
+      .salat-next
+        salat( :salat="nextSalat", disp-type="next")
+        current-location( :location="location")
+      .salat-schedule
+        .salat-schedule__heading
+          DayDisplay(:dateObj="dateToDisplay")
+          div.salat-schedule__switcher
+            span.salat-schedule__switch(
+              :class="{'salat-schedule__switch--inactive': selectedDay === 'today'}"
+              @click="selectDay('today')"
+            ) &larr;
+            | &emsp;
+            span.salat-schedule__switch(
+              :class="{'salat-schedule__switch--inactive': selectedDay !== 'today'}"
+              @click="selectDay('tomorrow')"
+            ) &rarr;
+        salat-list(:salat-list="selectedDay === 'today' ? todaySalat : tomorrowSalat")
 </template>
 
 <script lang="ts">

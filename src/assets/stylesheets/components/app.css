@@ -13,16 +13,4 @@
 
   flex-grow: 2;
   align-items: inherit;
-
-  @media (--bp-medium) {
-    flex-direction: row;
-
-    align-items: center;
-  }
-
-  @media (--bp-large) {
-    flex-direction: row;
-
-    align-items: center;
-  }
 }
