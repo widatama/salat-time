@@ -34,11 +34,11 @@
 */
 
 .fade-enter-active {
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
 }
 
 .fade-leave-active {
-  transition: opacity 0.1s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,

@@ -10,7 +10,9 @@ Transition(name="fade")
         current-location( :location="location")
       .salat-schedule
         .salat-schedule__heading
-          DayDisplay(:dateObj="dateToDisplay")
+          Transition(name="fade", mode="out-in")
+            DayDisplay(:dateObj="today", v-if="selectedDay === 'today'")
+            DayDisplay(:dateObj="tomorrow", v-else)
           div.salat-schedule__switcher
             span.salat-schedule__switch(
               v-if="selectedDay !== 'today'"
@@ -93,7 +95,9 @@ export default defineComponent({
       location: computed(() => store.getters.location),
       nextSalat: computed(() => store.getters.nextSalat),
       slideTransitionName,
+      today,
       todaySalat: computed(() => store.getters.todaySalat),
+      tomorrow,
       tomorrowSalat: computed(() => store.getters.tomorrowSalat),
       selectDay,
     };
