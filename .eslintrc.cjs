@@ -4,12 +4,14 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 module.exports = {
   root: true,
   extends: [
-    'plugin:vue/vue3-essential',
     'eslint:recommended',
-    '@vue/eslint-config-airbnb-with-typescript',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'plugin:vue/vue3-essential',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
+    parser: '@typescript-eslint/parser',
   },
   overrides: [
     {
@@ -19,4 +21,10 @@ module.exports = {
       },
     },
   ],
+  settings: {
+    'import/resolver': {
+      node: true,
+      typescript: true,
+    },
+  },
 };

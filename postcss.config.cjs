@@ -1,3 +1,4 @@
+/* eslint-env node */
 const autoprefixer = require('autoprefixer');
 const postcssCustomMedia = require('postcss-custom-media');
 const postcssImport = require('postcss-import');

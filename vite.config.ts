@@ -1,4 +1,4 @@
-/// <reference types="vitest"/>
+/* eslint-env node */
 import { resolve } from 'path';
 import { fileURLToPath, URL } from 'node:url';
 
