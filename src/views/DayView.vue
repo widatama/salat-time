@@ -26,7 +26,6 @@ import { add } from 'date-fns';
 import {
   computed, defineComponent, onMounted, ref,
 } from 'vue';
-import { useStore } from 'vuex';
 
 import DayDisplay from '@/components/DayDisplay.vue';
 import LoadingCue from '@/components/LoadingCue.vue';
@@ -34,6 +33,8 @@ import CurrentLocation from '@/components/CurrentLocation.vue';
 import Notification from '@/components/Notification.vue';
 import Salat from '@/components/Salat.vue';
 import SalatList from '@/components/SalatList.vue';
+
+import useMainStore from '@/stores/main';
 
 const APPREFRESHINTERVAL = 600000; // Ten minutes
 
@@ -48,7 +49,7 @@ export default defineComponent({
     'salat-list': SalatList,
   },
   setup() {
-    const store = useStore();
+    const mainStore = useMainStore();
     const selectedDay = ref('today');
     const slideTransitionName = computed(() => {
       if (selectedDay.value === 'today') {
@@ -69,9 +70,9 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      store.dispatch('initializeState');
+      mainStore.initializeState();
       setInterval(() => {
-        store.dispatch('loadSalat');
+        mainStore.loadSalat();
       }, APPREFRESHINTERVAL);
     });
 
@@ -90,17 +91,17 @@ export default defineComponent({
     return {
       selectedDay,
       dateToDisplay,
-      appError: computed(() => store.getters.appError),
-      appPhase: computed(() => store.getters.appPhase),
-      isError: computed(() => store.getters.isError),
-      isLoading: computed(() => store.getters.isLoading),
-      location: computed(() => store.getters.location),
-      nextSalat: computed(() => store.getters.nextSalat),
+      appError: computed(() => mainStore.appError),
+      appPhase: computed(() => mainStore.appPhase),
+      isError: computed(() => mainStore.isError),
+      isLoading: computed(() => mainStore.isLoading),
+      location: computed(() => mainStore.location),
+      nextSalat: computed(() => mainStore.nextSalat),
       slideTransitionName,
       today,
-      todaySalat: computed(() => store.getters.todaySalat),
+      todaySalat: computed(() => mainStore.todaySalat),
       tomorrow,
-      tomorrowSalat: computed(() => store.getters.tomorrowSalat),
+      tomorrowSalat: computed(() => mainStore.tomorrowSalat),
       selectDay,
       toggleDay,
     };
