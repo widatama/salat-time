@@ -1,6 +1,4 @@
 /* eslint-env node */
-const autoprefixer = require('autoprefixer');
-const postcssCustomMedia = require('postcss-custom-media');
 const postcssImport = require('postcss-import');
 const postcssNested = require('postcss-nested');
 const postcssPresetEnv = require('postcss-preset-env');
@@ -10,9 +8,11 @@ module.exports = {
     postcssImport({
       path: ['./node_modules', './src'],
     }),
-    postcssPresetEnv,
-    postcssCustomMedia,
+    postcssPresetEnv({
+      features: {
+        'nesting-rules': false,
+      },
+    }),
     postcssNested,
-    autoprefixer,
   ],
 };
