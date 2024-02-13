@@ -1,5 +1,5 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.json",
+  "extends": ["@vue/tsconfig/tsconfig.json", "@vue/tsconfig/tsconfig.lib.json"],
   "include": [
     "cypress.config.*",
     "playwright.config.*",
