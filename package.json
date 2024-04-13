@@ -45,10 +45,10 @@
     "postcss-preset-env": "^9.5.5",
     "pug": "^3.0.2",
     "typescript": "^5.4.5",
-    "vite": "^5.1.1",
+    "vite": "^5.2.8",
     "vite-plugin-html": "^3.2.2",
-    "vite-plugin-pwa": "^0.18.1",
-    "vitest": "^1.2.2",
+    "vite-plugin-pwa": "^0.19.8",
+    "vitest": "^1.5.0",
     "vue-tsc": "^2.0.13"
   }
 }
