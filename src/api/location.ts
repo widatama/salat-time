@@ -4,6 +4,7 @@ import geo from '@/modules/geo';
 import client from '@/modules/client';
 
 import manipulator from './locationmanipulator';
+import type { GeoIPResponse, GeoLocationResponse } from './locationmanipulator';
 
 type Coordinate = {
   latitude: number;
@@ -31,7 +32,7 @@ async function get() {
 
     const url = generateReverseGeolocationUrl(position.coords);
 
-    const response = await client.get(url);
+    const response: GeoLocationResponse = await client.get(url);
 
     const location = manipulator.transformReverseGeolocationResponse(response);
     const timezone = jstz.determine();
@@ -39,7 +40,7 @@ async function get() {
     return location;
   } catch (_) { // eslint-disable-line @typescript-eslint/no-unused-vars
     // Use geoip if geolocation is not working, e.g. on Chromium
-    const response = await client.get(import.meta.env.VITE_GEO_IP_API_URL);
+    const response: GeoIPResponse = await client.get(import.meta.env.VITE_GEO_IP_API_URL);
     return manipulator.transformIPLocationResponse(response);
   }
 }

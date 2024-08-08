@@ -1,7 +1,7 @@
 import { isAfter, parse } from 'date-fns';
 
 type SalatTiming = { [key: string]: string };
-type SalatResponse = {
+export type SalatResponse = {
   timings: SalatTiming;
   date: { readable: string };
 };

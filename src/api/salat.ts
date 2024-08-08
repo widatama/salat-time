@@ -3,6 +3,7 @@ import { addDays, format } from 'date-fns';
 import client from '@/modules/client';
 import type { Location } from './locationmanipulator';
 import manipulator from './salatmanipulator';
+import type { SalatResponse } from './salatmanipulator';
 
 type ClientResponse = {
   data: object;
@@ -26,11 +27,11 @@ async function get(location: Location) {
   const urlToday = generateUrl(location, format(new Date(), 't'));
   const urlTomorrow = generateUrl(location, format(addDays(new Date(), 1), 't'));
 
-  const salatResponse: ClientResponse[] = await Promise.all([client.get(urlToday), client.get(urlTomorrow)]);
+  const salatResponse: ClientResponse[] = await Promise.all([client.get(urlToday), client.get(urlTomorrow)]) as ClientResponse[];
 
-  const todaySalat = manipulator.transformSalatData(salatResponse[0].data);
-  const tomorrowSalat = manipulator.transformSalatData(salatResponse[1].data);
-  const nextSalat = manipulator.getNextSalat(salatResponse[0].data, salatResponse[1].data);
+  const todaySalat = manipulator.transformSalatData(<SalatResponse>salatResponse[0].data);
+  const tomorrowSalat = manipulator.transformSalatData(<SalatResponse>salatResponse[1].data);
+  const nextSalat = manipulator.getNextSalat(<SalatResponse>salatResponse[0].data, <SalatResponse>salatResponse[1].data);
 
   return {
     todaySalat,

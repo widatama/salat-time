@@ -8,22 +8,26 @@ export type Location = {
   longitude: number;
 };
 
-type GeoIPResponse = {
+export type GeoIPResponse = {
   city: string;
+  country_code: string;
   country_name: string;
   district: string;
-  latitude: string;
-  longitude: string;
+  ip: string;
+  latitude: number;
+  longitude: number;
   region: string;
   timezone_name: string;
+  zip_code: string;
 };
 
-type GeoLocationResponse = {
+export type GeoLocationResponse = {
   address: {
     country: string;
-    city: string;
+    county: string;
+    municipality: string;
+    region: string;
     state: string;
-    state_district: string;
     village: string;
   };
   lat: string;
@@ -41,15 +45,15 @@ function transformIPLocationResponse(response: GeoIPResponse): Location {
     village: response.district,
     state: response.region,
     timezone: response.timezone_name,
-    latitude: parseFloat(response.latitude),
-    longitude: parseFloat(response.longitude),
+    latitude: response.latitude,
+    longitude: response.longitude,
   };
 }
 
 function transformReverseGeolocationResponse(response: GeoLocationResponse): Location {
   return {
     country: response.address.country,
-    city: response.address.state_district || response.address.city,
+    city: response.address.county,
     village: response.address.village,
     state: response.address.state,
     timezone: '',

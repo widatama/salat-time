@@ -8,7 +8,7 @@ function checkStatus(response: Response): Response | never {
   throw error;
 }
 
-function get(url: string, options?: RequestInit): Promise<Response> {
+function get<T>(url: string, options?: RequestInit): Promise<T> {
   return fetch(url, options)
     .then(checkStatus)
     .then((response) => response.json())

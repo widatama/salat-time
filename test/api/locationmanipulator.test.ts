@@ -5,17 +5,16 @@ import locationManipulator from '@/api/locationmanipulator';
 describe('Transform geo ip lookup response', () => {
   // This is location data sample fetched from geo ip lookup
   const rawLocation = {
-    ip: '202.62.16.22',
+    city: 'Jakarta',
     country_code: 'ID',
     country_name: 'Indonesia',
-    region_code: 'JK',
-    region_name: 'Jakarta',
-    city: 'Jakarta',
-    zip_code: '',
-    timezone_name: 'Asia/Jakarta',
+    district: 'Jakarta',
+    ip: '202.62.16.22',
     latitude: -6.1744,
     longitude: 106.8294,
-    metro_code: 0,
+    region: 'Jakarta',
+    timezone_name: 'Asia/Jakarta',
+    zip_code: '',
   };
 
   // Transform raw location data to get only what is needed in the correct format
@@ -47,10 +46,14 @@ describe('Transform reverse geolocation response', () => {
   const response = {
     address: {
       country: 'Indonesia',
-      city: 'Jakarta',
+      county: 'Bogor',
+      municipality: 'Ciomas',
+      region: 'Java',
+      state: 'West Java',
+      village: 'Ciomas',
     },
-    lat: -6.1744,
-    lon: 106.8294,
+    lat: '-6.1744',
+    lon: '106.8294',
   };
 
   // Transform response sample to get only what is needed in the correct format
