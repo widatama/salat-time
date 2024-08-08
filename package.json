@@ -39,7 +39,7 @@
     "postcss": "^8.4.41",
     "postcss-import": "^16.1.0",
     "postcss-nested": "^6.2.0",
-    "postcss-preset-env": "^9.6.0",
+    "postcss-preset-env": "^10.0.0",
     "pug": "^3.0.3",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.0.1",
