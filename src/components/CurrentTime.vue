@@ -18,7 +18,7 @@ import {
 const REFRESHINTERVAL = 1000; // One second
 
 export default defineComponent({
-  name: 'current-time',
+  name: 'CurrentTime',
   setup() {
     const dateObj = ref(new Date());
 

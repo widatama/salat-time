@@ -18,14 +18,15 @@ export default defineComponent({
   props: {
     salat: {
       type: Object,
+      required: true,
     },
     dispType: {
       type: String,
+      default: '',
     },
   },
   setup(props) {
     return {
-      salat: props.salat,
       className(prefix: string) {
         if (props.dispType) {
           return prefix + props.dispType;

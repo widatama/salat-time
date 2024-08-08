@@ -1,6 +1,10 @@
 import { isAfter, parse } from 'date-fns';
 
 type SalatTiming = { [key: string]: string };
+type SalatResponse = {
+  timings: SalatTiming;
+  date: { readable: string };
+};
 export type Salat = {
   name: string;
   date: string;
@@ -44,13 +48,13 @@ function cleanupSalatTiming(salatTiming: SalatTiming) {
   }, result);
 }
 
-function transformSalatData(salatData: any): Salat[] {
+function transformSalatData(salatData: SalatResponse): Salat[] {
   const salatTiming = cleanupSalatTiming(salatData.timings);
 
   return generateSalatArray(salatTiming, salatData.date.readable);
 }
 
-function getNextSalat(salatDataToday: any, salatDataTomorrow: any): Salat {
+function getNextSalat(salatDataToday: SalatResponse, salatDataTomorrow: SalatResponse): Salat {
   const salatArrayToday = transformSalatData(salatDataToday);
   const salatArrayTomorrow = transformSalatData(salatDataTomorrow);
 

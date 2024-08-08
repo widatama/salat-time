@@ -44,8 +44,8 @@ export default defineComponent({
     DayDisplay,
     'current-location': CurrentLocation,
     'loading-cue': LoadingCue,
-    notification: Notification,
-    salat: Salat,
+    'notification': Notification,
+    'salat': Salat,
     'salat-list': SalatList,
   },
   setup() {

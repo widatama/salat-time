@@ -6,8 +6,8 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  props: [
-    'notificationMessage',
-  ],
+  props: {
+    notificationMessage: { type: String, required: true },
+  },
 });
 </script>

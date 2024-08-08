@@ -4,6 +4,10 @@ import client from '@/modules/client';
 import type { Location } from './locationmanipulator';
 import manipulator from './salatmanipulator';
 
+type ClientResponse = {
+  data: object;
+};
+
 function generateUrl(location: Location, timestamp: string) {
   const urlObj = new URL(import.meta.env.VITE_SALAT_API_URL);
   const { pathname, searchParams } = urlObj;
@@ -22,7 +26,7 @@ async function get(location: Location) {
   const urlToday = generateUrl(location, format(new Date(), 't'));
   const urlTomorrow = generateUrl(location, format(addDays(new Date(), 1), 't'));
 
-  const salatResponse: any[] = await Promise.all([client.get(urlToday), client.get(urlTomorrow)]);
+  const salatResponse: ClientResponse[] = await Promise.all([client.get(urlToday), client.get(urlTomorrow)]);
 
   const todaySalat = manipulator.transformSalatData(salatResponse[0].data);
   const tomorrowSalat = manipulator.transformSalatData(salatResponse[1].data);

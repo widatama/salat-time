@@ -6,8 +6,8 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  props: [
-    'loadingText',
-  ],
+  props: {
+    loadingText: { type: String, default: 'loading' },
+  },
 });
 </script>

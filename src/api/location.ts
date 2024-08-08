@@ -37,7 +37,7 @@ async function get() {
     const timezone = jstz.determine();
     location.timezone = timezone.name();
     return location;
-  } catch (_) {
+  } catch (_) { // eslint-disable-line @typescript-eslint/no-unused-vars
     // Use geoip if geolocation is not working, e.g. on Chromium
     const response = await client.get(import.meta.env.VITE_GEO_IP_API_URL);
     return manipulator.transformIPLocationResponse(response);

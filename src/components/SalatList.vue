@@ -13,8 +13,8 @@ export default defineComponent({
   components: {
     salat: Salat,
   },
-  props: [
-    'salatList',
-  ],
+  props: {
+    salatList: { type: Array, default: () => [] },
+  },
 });
 </script>
