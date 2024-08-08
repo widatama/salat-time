@@ -1,21 +1,19 @@
 import { addDays, format } from 'date-fns';
-import URL from 'url-parse';
 
 import client from '@/modules/client';
 import type { Location } from './locationmanipulator';
 import manipulator from './salatmanipulator';
 
 function generateUrl(location: Location, timestamp: string) {
-  const urlObj = new URL(import.meta.env.VITE_SALAT_API_URL, true);
-  const { pathname, query } = urlObj;
+  const urlObj = new URL(import.meta.env.VITE_SALAT_API_URL);
+  const { pathname, searchParams } = urlObj;
 
-  query.latitude = location.latitude.toString();
-  query.longitude = location.longitude.toString();
-  query.timezonestring = location.timezone;
-  query.method = '3';
+  searchParams.append('latitude', location.latitude.toString());
+  searchParams.append('longitude', location.longitude.toString());
+  searchParams.append('timezonestring', location.timezone);
+  searchParams.append('method', '3');
 
-  urlObj.set('pathname', [pathname, timestamp].join('/'));
-  urlObj.set('query', query);
+  urlObj.pathname = [pathname, timestamp].join('/');
 
   return urlObj.href;
 }

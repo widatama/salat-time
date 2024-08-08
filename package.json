@@ -21,14 +21,12 @@
     "jstz": "^2.1.1",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.7",
-    "url-parse": "^1.5.10",
     "vue": "^3.4.33",
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.3",
     "@types/node": "^20.14.11",
-    "@types/url-parse": "^1.4.11",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "@vitejs/plugin-basic-ssl": "^1.1.0",

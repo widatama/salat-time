@@ -1,5 +1,4 @@
 import jstz from 'jstz';
-import URL from 'url-parse';
 
 import geo from '@/modules/geo';
 import client from '@/modules/client';
@@ -13,16 +12,14 @@ type Coordinate = {
 
 function generateReverseGeolocationUrl(coordinate: Coordinate) {
   // https://nominatim.openstreetmap.org/reverse?format=json&zoom=15&addressdetails=1;
-  const urlObj = new URL(import.meta.env.VITE_GEOLOCATION_API_URL, true);
-  const { query } = urlObj;
+  const urlObj = new URL(import.meta.env.VITE_GEOLOCATION_API_URL);
+  const { searchParams } = urlObj;
 
-  query.format = 'json';
-  query.zoom = '15';
-  query.addressdetails = '1';
-  query.lat = coordinate.latitude.toString();
-  query.lon = coordinate.longitude.toString();
-
-  urlObj.set('query', query);
+  searchParams.append('format', 'json');
+  searchParams.append('zoom', '15');
+  searchParams.append('addressdetails', '1');
+  searchParams.append('lat', coordinate.latitude.toString());
+  searchParams.append('lon', coordinate.longitude.toString());
 
   return urlObj.href;
 }
