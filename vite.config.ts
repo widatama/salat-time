@@ -88,4 +88,7 @@ export default defineConfig({
     include: ['../test/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}'],
     reporters: 'dot',
   },
+  esbuild: {
+    legalComments: 'none',
+  },
 });
