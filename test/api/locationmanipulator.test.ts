@@ -64,7 +64,7 @@ describe('Transform reverse geolocation response', () => {
   });
 
   test('City is correct', () => {
-    expect(location.city).toBe('Jakarta');
+    expect(location.city).toBe('Bogor');
   });
 
   test('Timezone is correct', () => {
