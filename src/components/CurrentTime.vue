@@ -1,9 +1,8 @@
 <template lang="pug">
 .current-time
-  span.clock
-    | {{hour}}
-    span.clock__ticker &nbsp;:&nbsp;
-    | {{minute}}
+  | {{hour}}
+  span.animate--blink &nbsp;:&nbsp;
+  | {{minute}}
 </template>
 
 <script lang="ts">

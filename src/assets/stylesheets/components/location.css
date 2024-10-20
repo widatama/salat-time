@@ -1,20 +1,7 @@
-
-.location {
-
-  overflow: hidden;
-  font-size: 1.5em;
-  font-weight: 200;
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-
-  @media (--bp-medium) {
-    margin: 0;
-    font-size: 1.5em;
-  }
-
-  @media (--bp-large) {
-    margin: 0;
-    font-size: 3em;
+@layer components {
+  .location {
+    @apply tw-text-lg tw-font-extralight tw-overflow-hidden tw-text-ellipsis tw-whitespace-nowrap;
+    @apply md:tw-text-4xl;
+    @apply lg:tw-text-5xl;
   }
 }

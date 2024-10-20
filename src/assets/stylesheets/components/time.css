@@ -1,22 +1,5 @@
-.current-day {
-  @media (--bp-small) {
-    font-size: 1em;
+@layer components {
+  .day-display {
+    @apply lg:tw-text-3xl;
   }
-
-  @media (--bp-medium) {
-    font-size: 1em;
-  }
-
-  @media (--bp-large) {
-    font-size: 1.25em;
-    line-height: 1.695;
-  }
-}
-
-.current-time {
-  float: right;
-}
-
-.clock__ticker {
-  animation: blink 1s infinite;
 }

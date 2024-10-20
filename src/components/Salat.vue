@@ -1,9 +1,9 @@
 <template lang="pug">
-.salat( :class="className('salat--')")
-  .salat__name( :class="className('salat__name--')")
+.salat(:class="className('salat--')")
+  .salat__name(:class="className('salat__name--')")
     | {{salat.name}}
-  .salat__time( :class="className('salat__time--')")
-    time-display( :time="salat.time")
+  .salat__time(:class="className('salat__time--')")
+    time-display(:time="salat.time")
 </template>
 
 <script lang="ts">

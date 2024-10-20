@@ -1,15 +1,15 @@
 <template lang="pug">
 template(v-if="isLoading")
-  loading-cue( :loading-text="appPhase")
+  loading-cue(:loading-text="appPhase")
 Transition(name="fade")
   template(v-if="!isLoading")
-    notification( :notification-message="appError", v-if="isError")
+    notification(:notification-message="appError", v-if="isError")
     .salat-layout(v-else)
-      .salat-next
-        salat( :salat="nextSalat", disp-type="next")
-        current-location( :location="location")
-      .salat-schedule
-        .salat-schedule__heading
+      div(class="tw-flex tw-flex-col tw-justify-center")
+        salat(:salat="nextSalat", disp-type="next")
+        current-location(:location="location")
+      .salat-schedule(class="tw-flex tw-flex-col tw-justify-start md:tw-justify-center")
+        .salat-schedule__heading(class="tw-mb-2")
           Transition(name="fade", mode="out-in")
             DayDisplay(:dateObj="today", v-if="selectedDay === 'today'")
             DayDisplay(:dateObj="tomorrow", v-else)

@@ -1,16 +1,8 @@
+@layer components {
+  .loading-cue {
+    @apply tw-flex tw-justify-center tw-items-center tw-grow tw-text-2xl;
+    @apply lg:tw-text-6xl;
 
-.loading-cue {
-
-  display: flex;
-  font-size: 1.5em;
-
-  animation: pulse 3s infinite;
-
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-
-  @media (--bp-large) {
-    font-size: 3em;
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }

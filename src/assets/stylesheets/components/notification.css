@@ -1,16 +1,7 @@
-
-.notification {
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-
-  @media (--bp-medium) {
-    font-size: 1.5em;
-  }
-
-  @media (--bp-large) {
-    font-size: 3em;
+@layer components {
+  .notification {
+    @apply tw-flex tw-justify-center tw-items-center tw-grow;
+    @apply md:tw-text-4xl;
+    @apply lg:tw-text-6xl;
   }
 }

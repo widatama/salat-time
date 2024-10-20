@@ -1,5 +1,5 @@
 <template lang="pug">
-.current-day
+.day-display
   | {{day}}&ensp;{{date}} {{month}} {{year}}
 </template>
 
