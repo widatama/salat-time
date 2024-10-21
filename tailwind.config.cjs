@@ -7,8 +7,11 @@ module.exports = {
   prefix: 'tw-',
   theme: {
     colors: {
-      black: '#333333',
+      dark: '#333333',
       white: '#ffffff',
+    },
+    fontFamily: {
+      sans: ['Lato', 'Helvetica', 'Arial', 'sans-serif'],
     },
     screens: {
       sm: '1px',

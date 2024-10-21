@@ -1,34 +1,20 @@
-/*
+@layer components {
+  html,
+  body {
+    @apply tw-text-white tw-bg-dark tw-h-full;
+    @apply tw-font-sans tw-leading-normal;
+    font-size: 125%;
+    font-size: 20px;
 
-  Basic
-*/
+    text-size-adjust: 100%;
+    font-feature-settings: "liga" 1;
+  }
 
-/* stylelint-disable selector-max-type */
-html,
-body {
-  height: 100%;
-  color: var(--cl-text);
-  background: var(--cl-bg-base);
-}
-/* stylelint-enable selector-max-type */
+  ::selection {
+    @apply tw-text-dark tw-bg-white;
+  }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/*
-
-  Miscs
-*/
-
-::selection {
-  color: #fff;
-  background: #333;
-}
-
-::-moz-selection {
-  color: #fff;
-  background: #333;
+  ::-moz-selection {
+    @apply tw-text-dark tw-bg-white;
+  }
 }

@@ -1,5 +1,6 @@
 /* eslint-env node */
 const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 const postcssImport = require('postcss-import');
 const postcssNested = require('postcss-nested');
 const tailwindcss = require('tailwindcss');
@@ -12,5 +13,6 @@ module.exports = {
     postcssNested,
     tailwindcss,
     autoprefixer,
+    cssnano,
   ],
 };

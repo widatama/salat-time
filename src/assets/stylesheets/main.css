@@ -1,14 +1,11 @@
-@import 'normalize.css';
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
 @import "https://fonts.googleapis.com/css?family=Lato:300,400,700";
 
-@import "./base/variables";
 @import "./base/animation";
 @import "./base/base";
-@import "./base/typography";
 
 @import "./components/header";
 @import "./components/loading-cue";
