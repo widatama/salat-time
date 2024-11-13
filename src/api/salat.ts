@@ -24,8 +24,8 @@ function generateUrl(location: Location, timestamp: string) {
 }
 
 async function get(location: Location) {
-  const urlToday = generateUrl(location, format(new Date(), 't'));
-  const urlTomorrow = generateUrl(location, format(addDays(new Date(), 1), 't'));
+  const urlToday = generateUrl(location, format(new Date(), 'd-M-yyyy'));
+  const urlTomorrow = generateUrl(location, format(addDays(new Date(), 1), 'd-M-yyyy'));
 
   const salatResponse: ClientResponse[] = await Promise.all([client.get(urlToday), client.get(urlTomorrow)]) as ClientResponse[];
 
