@@ -8,18 +8,7 @@ export type Location = {
   longitude: number;
 };
 
-export type GeoIPResponse = {
-  city: string;
-  country_code: string;
-  country_name: string;
-  district: string;
-  ip: string;
-  latitude: number;
-  longitude: number;
-  region: string;
-  timezone_name: string;
-  zip_code: string;
-};
+export type GeoIPResponse = Record<string, unknown>;
 
 export type GeoLocationResponse = {
   address: {
@@ -34,19 +23,34 @@ export type GeoLocationResponse = {
   lon: string;
 };
 
+function toSnakeCase(inp: string): string {
+  return inp.replace(/\B[A-Z]/g, (letter: string) => `_${letter.toLowerCase()}`).toLowerCase();
+}
+
+function transformObjectKeyToSnakeCase(response: GeoIPResponse): GeoIPResponse {
+  const result: Record<string, unknown> = {};
+
+  Object.entries(response).forEach(([key, val]) => {
+    result[toSnakeCase(key)] = val;
+  });
+
+  return result;
+};
+
 // These functions are for transforming location api response into Location object so the UI can
 // just display it
 // There are two apis being used, geolocation and geoip
 
-function transformIPLocationResponse(response: GeoIPResponse): Location {
+function transformIPLocationResponse(inpResponse: GeoIPResponse): Location {
+  const response = transformObjectKeyToSnakeCase(inpResponse);
   return {
-    country: response.country_name,
-    city: response.city,
-    village: response.district,
-    state: response.region,
-    timezone: response.timezone_name,
-    latitude: response.latitude,
-    longitude: response.longitude,
+    country: response.country_name as string,
+    city: response.city as string,
+    village: response.district as string,
+    state: response.region as string,
+    timezone: response.timezone_name as string || response.time_zone as string,
+    latitude: response.latitude as number,
+    longitude: response.longitude as number,
   };
 }
 
@@ -63,6 +67,8 @@ function transformReverseGeolocationResponse(response: GeoLocationResponse): Loc
 }
 
 export default {
+  toSnakeCase,
+  transformObjectKeyToSnakeCase,
   transformIPLocationResponse,
   transformReverseGeolocationResponse,
 };

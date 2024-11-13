@@ -37,5 +37,5 @@ npm run lint
 ## Data Source
 
 1. Reverse geolocation from [https://nominatim.openstreetmap.org/](https://nominatim.openstreetmap.org/)
-2. Geoip from [https://geoiplookup.io/api](https://geoiplookup.io/api)
+2. Geoip from [https://apip.cc/](https://apip.cc/)
 3. Salat time from [https://api.aladhan.com](https://api.aladhan.com)

@@ -1,24 +1,51 @@
 import { describe, expect, test } from 'vitest';
 
-import locationManipulator from '@/api/locationmanipulator';
+import lm from '@/api/locationmanipulator';
+
+describe('Transform title case string to snake case', () => {
+  test('Normal case is not transformed', () => {
+    expect(lm.toSnakeCase('lowercase')).toBe('lowercase');
+  });
+
+  test('Transform to lower case', () => {
+    expect(lm.toSnakeCase('Titlecase')).toBe('titlecase');
+  });
+
+  test('Transform to snake case', () => {
+    expect(lm.toSnakeCase('TitleCase')).toBe('title_case');
+  });
+});
+
+describe('Transform object key to snake case', () => {
+  const raw = {
+    City: 'Jakarta',
+    ContinentCode: 'AS',
+  };
+  const result = lm.transformObjectKeyToSnakeCase(raw);
+
+  test('Object key is in snake case', () => {
+    expect(result.city).toBe('Jakarta');
+    expect(result.continent_code).toBe('AS');
+  });
+});
 
 describe('Transform geo ip lookup response', () => {
-  // This is location data sample fetched from geo ip lookup
+  // This is geo ip lookup response sample
   const rawLocation = {
-    city: 'Jakarta',
-    country_code: 'ID',
-    country_name: 'Indonesia',
-    district: 'Jakarta',
-    ip: '202.62.16.22',
-    latitude: -6.1744,
-    longitude: 106.8294,
-    region: 'Jakarta',
-    timezone_name: 'Asia/Jakarta',
-    zip_code: '',
+    City: 'Jakarta',
+    ContinentCode: 'AS',
+    ContinentName: 'Asia',
+    CountryCode: 'ID',
+    CountryName: 'Indonesia',
+    Latitude: -6.1744,
+    Longitude: 106.8294,
+    RegionName: 'Jakarta',
+    Postal: '',
+    TimeZone: 'Asia/Jakarta',
   };
 
   // Transform raw location data to get only what is needed in the correct format
-  const location = locationManipulator.transformIPLocationResponse(rawLocation);
+  const location = lm.transformIPLocationResponse(rawLocation);
 
   test('Country is correct', () => {
     expect(location.country).toBe('Indonesia');
@@ -57,7 +84,7 @@ describe('Transform reverse geolocation response', () => {
   };
 
   // Transform response sample to get only what is needed in the correct format
-  const location = locationManipulator.transformReverseGeolocationResponse(response);
+  const location = lm.transformReverseGeolocationResponse(response);
 
   test('Country is correct', () => {
     expect(location.country).toBe('Indonesia');
