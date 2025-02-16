@@ -1,52 +1,52 @@
 @layer components {
   .salat-layout {
-    @apply tw-grid tw-grid-flow-row tw-auto-cols-fr tw-grow tw-px-[15px] tw-py-[10px];
-    @apply md:tw-px-6 md:tw-py-6 md:tw-grid-flow-col;
+    @apply tw:grid tw:grid-flow-row tw:auto-cols-fr tw:grow tw:px-[15px] tw:py-[10px];
+    @apply tw:md:px-6 tw:md:py-6 tw:md:grid-flow-col;
   }
 
   .salat-schedule__heading {
-    @apply tw-flex tw-flex-row tw-justify-between tw-items-center;
+    @apply tw:flex tw:flex-row tw:justify-between tw:items-center;
   }
 
   .salat-schedule__switcher {
-    @apply tw-text-xl;
-    @apply md:tw-text-4xl tw-leading-none;
+    @apply tw:text-xl;
+    @apply tw:md:text-4xl tw:leading-none;
   }
 
   .salat-schedule__switch {
-    @apply tw-p-0 tw-m-0 tw-border-0 tw-bg-none tw-cursor-pointer tw-text-white;
+    @apply tw:p-0 tw:m-0 tw:border-0 tw:bg-none tw:cursor-pointer tw:text-white;
   }
 
   .salat-items {
-    @apply md:tw-text-3xl md:tw-leading-normal;
-    @apply lg:tw-text-6xl lg:tw-leading-normal;
+    @apply tw:md:text-3xl tw:md:leading-normal;
+    @apply tw:lg:text-6xl tw:lg:leading-normal;
   }
 
   .salat {
-    @apply tw-flex tw-flex-row tw-justify-between tw-items-center;
+    @apply tw:flex tw:flex-row tw:justify-between tw:items-center;
 
     &--next {
-      @apply tw-flex-col tw-items-start;
+      @apply tw:flex-col tw:items-start;
     }
   }
 
   .salat__name {
-    @apply tw-font-bold tw-capitalize;
+    @apply tw:font-bold tw:capitalize;
 
     &--next {
-      @apply tw-text-4xl tw-leading-none tw-mb-2;
-      @apply md:tw-text-7xl md:tw-mb-0;
-      @apply lg:tw-text-9xl lg:tw-mb-0;
+      @apply tw:text-4xl tw:leading-none tw:mb-2;
+      @apply tw:md:text-7xl tw:md:mb-0;
+      @apply tw:lg:text-9xl tw:lg:mb-0;
     }
   }
 
   .salat__time {
-    @apply tw-font-light;
+    @apply tw:font-light;
 
     &--next {
-      @apply tw-text-5xl tw-leading-normal tw-font-extralight;
-      @apply md:tw-text-7xl md:tw-leading-normal;
-      @apply lg:tw-text-9xl lg:tw-leading-normal;
+      @apply tw:text-5xl tw:leading-normal tw:font-extralight;
+      @apply tw:md:text-7xl tw:md:leading-normal;
+      @apply tw:lg:text-9xl tw:lg:leading-normal;
     }
   }
 }

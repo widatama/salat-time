@@ -1,10 +1,10 @@
 <template lang="pug">
 header.app-header
   h1
-    span.tw-font-bold Salat
+    span(class="tw:font-bold") Salat
     | Time
   CurrentTime
-section(class="tw-flex tw-flex-col tw-grow")
+section(class="tw:flex tw:flex-col tw:grow")
   RouterView
 </template>
 

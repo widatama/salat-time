@@ -3,7 +3,7 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const postcssImport = require('postcss-import');
 const postcssNested = require('postcss-nested');
-const tailwindcss = require('tailwindcss');
+const tailwindcss = require('@tailwindcss/postcss');
 
 module.exports = {
   plugins: [

@@ -1,7 +1,7 @@
 @layer components {
   .app-header {
-    @apply tw-flex tw-flex-row tw-justify-between tw-px-[15px] tw-py-[10px] tw-text-xs tw-leading-8;
-    @apply md:tw-px-6 md:tw-py-6 md:tw-text-xl md:tw-leading-6;
-    @apply lg:tw-text-2xl;
+    @apply tw:flex tw:flex-row tw:justify-between tw:px-[15px] tw:py-[10px] tw:text-xs tw:leading-8;
+    @apply tw:md:px-6 tw:md:py-6 tw:md:text-xl tw:md:leading-6;
+    @apply tw:lg:text-2xl;
   }
 }

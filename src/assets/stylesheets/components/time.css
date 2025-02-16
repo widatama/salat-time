@@ -1,5 +1,5 @@
 @layer components {
   .day-display {
-    @apply lg:tw-text-3xl;
+    @apply tw:lg:text-3xl;
   }
 }
