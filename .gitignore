@@ -14,6 +14,7 @@ coverage/
 dist-ssr/
 dist/
 node_modules/
+src/dev-dist/
 temp/
 tmp/
 
