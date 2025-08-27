@@ -13,12 +13,12 @@ export type Salat = {
 
 function generateSalatArray(salatTiming: SalatTiming, date: string): Salat[] {
   const result = Object.keys(salatTiming).map((key) => {
-    const time = salatTiming[key].split(':').join(' : ');
+    const time = salatTiming[key] || '';
 
     return {
       name: key,
       date,
-      time,
+      time: time.split(':').join(' : '),
     };
   });
 
@@ -41,7 +41,7 @@ function cleanupSalatTiming(salatTiming: SalatTiming) {
 
   return Object.keys(salatTiming).reduce((acc, key) => {
     if (keep.includes(key)) {
-      acc[key] = salatTiming[key];
+      acc[key] = salatTiming[key] || '';
     }
 
     return acc;

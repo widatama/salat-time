@@ -29,9 +29,9 @@ async function get(location: Location) {
 
   const salatResponse: ClientResponse[] = await Promise.all([client.get(urlToday), client.get(urlTomorrow)]) as ClientResponse[];
 
-  const todaySalat = manipulator.transformSalatData(<SalatResponse>salatResponse[0].data);
-  const tomorrowSalat = manipulator.transformSalatData(<SalatResponse>salatResponse[1].data);
-  const nextSalat = manipulator.getNextSalat(<SalatResponse>salatResponse[0].data, <SalatResponse>salatResponse[1].data);
+  const todaySalat = manipulator.transformSalatData(<SalatResponse>salatResponse[0]?.data);
+  const tomorrowSalat = manipulator.transformSalatData(<SalatResponse>salatResponse[1]?.data);
+  const nextSalat = manipulator.getNextSalat(<SalatResponse>salatResponse[0]?.data, <SalatResponse>salatResponse[1]?.data);
 
   return {
     todaySalat,
