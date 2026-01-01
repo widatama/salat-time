@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* global node */
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const postcssImport = require('postcss-import');

@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* global node */
  
 /** @type {import('tailwindcss').Config} */
 module.exports = {
