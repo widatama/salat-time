@@ -3,8 +3,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,vue,ts}'],
-  mode: 'jit',
-  prefix: 'tw-',
   theme: {
     colors: {
       dark: '#333333',

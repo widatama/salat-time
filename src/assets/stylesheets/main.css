@@ -1,7 +1,6 @@
-@import 'tailwindcss' prefix(tw);
+@import 'tailwindcss';
 
-@import 'https://fonts.googleapis.com/css?family=Lato:300,400,700'
-  layer(utilities);
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400,700' layer(utilities);
 
 @import './base/animation.css' layer(utilities);
 @import './base/base.css' layer(utilities);
@@ -14,6 +13,12 @@
 @import './components/salat.css';
 
 @config '../../../tailwind.config.cjs';
+
+@theme prefix(tw) {
+  --font-sans: 'Lato', 'Helvetica', 'Arial', sans-serif;
+  --color-dark: #333333;
+  --color-white: #ffffff;
+}
 
 @source './safelist.txt';
 
